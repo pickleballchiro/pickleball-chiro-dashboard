@@ -1,0 +1,633 @@
+{
+  "name": "Pickleball Chiro \u2014 Instagram Weekly Content Audit",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 7 * * 0"
+            }
+          ]
+        }
+      },
+      "id": "898f390e-6cfc-4101-aad9-3cdc14e70755",
+      "name": "Every Sunday 7AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "v1",
+              "name": "ACCESS_TOKEN",
+              "value": "={{ $vars.INSTAGRAM_ACCESS_TOKEN }}",
+              "type": "string"
+            },
+            {
+              "id": "v2",
+              "name": "IG_ACCOUNT_ID",
+              "value": "={{ $vars.INSTAGRAM_BUSINESS_ACCOUNT_ID }}",
+              "type": "string"
+            },
+            {
+              "id": "v3",
+              "name": "SINCE_TIMESTAMP",
+              "value": "={{ Math.floor((Date.now() - 7 * 24 * 60 * 60 * 1000) / 1000) }}",
+              "type": "number"
+            },
+            {
+              "id": "v4",
+              "name": "WEEK_OF",
+              "value": "={{ new Date().toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'}) }}",
+              "type": "string"
+            },
+            {
+              "id": "v5",
+              "name": "ANTHROPIC_API_KEY",
+              "value": "={{ $vars.ANTHROPIC_API_KEY }}",
+              "type": "string"
+            },
+            {
+              "id": "v6",
+              "name": "GOOGLE_SHEET_ID",
+              "value": "={{ $vars.GOOGLE_SHEET_ID }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "788054bc-c14f-43e7-9985-906f5bdf6021",
+      "name": "Set Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://graph.facebook.com/v19.0/{{ $('Set Variables').first().json.IG_ACCOUNT_ID }}/media",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "id,caption,media_type,timestamp,like_count,comments_count"
+            },
+            {
+              "name": "since",
+              "value": "={{ $('Set Variables').first().json.SINCE_TIMESTAMP }}"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $('Set Variables').first().json.ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "30c8e73d-f029-49a6-99cd-c5e3920503f8",
+      "name": "Fetch Media List",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split the media data array into individual items\nconst posts = $json.data || [];\n\nif (posts.length === 0) {\n  console.log('No posts found in the past 7 days.');\n  return [];\n}\n\nconsole.log(`Found ${posts.length} posts to process`);\nreturn posts.map(post => ({ json: post }));"
+      },
+      "id": "4959c10a-ce2f-46aa-9112-a78eaed28aea",
+      "name": "Extract Posts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Determine which metrics to fetch based on media type\nconst post = $json;\nconst isReel = post.media_type === 'VIDEO' || post.media_type === 'REELS';\nconst isCarousel = post.media_type === 'CAROUSEL_ALBUM';\n\nconst metricsToFetch = isReel\n  ? 'reach,impressions,saved,shares,video_views,total_interactions,follows,profile_visits,ig_reels_avg_percentage_watched'\n  : 'reach,impressions,saved,shares,total_interactions,follows,profile_visits';\n\nreturn [{ json: { ...post, _metricsToFetch: metricsToFetch, _isReel: isReel, _isCarousel: isCarousel } }];"
+      },
+      "id": "977c4c4d-857f-4b6e-b243-cac106e133ca",
+      "name": "Set Metrics String",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.id }}/insights",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "metric",
+              "value": "={{ $json._metricsToFetch }}"
+            },
+            {
+              "name": "period",
+              "value": "lifetime"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $('Set Variables').first().json.ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c2b58ec-ce1b-43f7-b245-f658d32a6b0b",
+      "name": "Fetch Insights",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge insights response with original post data\n// $json = insight API response\n// $('Set Metrics String').item.json = original post data for this item\nconst insightData = $json.data || [];\nconst post = $('Set Metrics String').item.json;\n\n// Build flat insights map\nconst insightMap = {};\nfor (const metric of insightData) {\n  const val = metric.values?.[0]?.value ?? metric.value ?? 0;\n  insightMap[metric.name] = val;\n}\n\n// Extract hook (first non-empty line of caption)\nconst caption = post.caption || '';\nconst hook = caption.split('\\n').map(l => l.trim()).filter(l => l.length > 0)[0] || '';\n\n// Detect ManyChat CTA keyword\nconst MANYCHAT_KEYWORDS = ['KNEE', 'FREE', 'ELBOW', 'SHOULDER', 'RECOVERY', 'DROP'];\nconst upperCaption = caption.toUpperCase();\nlet ctaKeyword = '';\nfor (const kw of MANYCHAT_KEYWORDS) {\n  if (new RegExp('\\\\b' + kw + '\\\\b').test(upperCaption)) { ctaKeyword = kw; break; }\n}\n\n// Classify content pillar\nconst lower = caption.toLowerCase();\nlet pillar = 'Unclassified';\nif (['knee', 'elbow', 'shoulder', 'pain', 'injury', 'hurt', 'inflammation', 'tendon'].some(k => lower.includes(k))) {\n  pillar = 'Pain & Injury';\n} else if (['third shot', 'reset', 'kitchen', 'movement', 'drop', 'technique', 'drill', 'dink', 'footwork'].some(k => lower.includes(k))) {\n  pillar = 'Performance & Technique';\n} else if (['recovery', 'longevity', 'rest', 'sleep', 'mobility', 'maintenance', 'over 50', 'over 40', 'stretch'].some(k => lower.includes(k))) {\n  pillar = 'Recovery & Longevity';\n} else if (['chiropractor', 'dupr', ' dc ', 'doctor', 'background', 'story', 'why i', 'case', 'chiro', 'adjustment', 'licensed'].some(k => lower.includes(k))) {\n  pillar = 'Credibility & Story';\n}\n\n// Normalize completion rate\nlet completionRate = null;\nif (post._isReel && insightMap.ig_reels_avg_percentage_watched != null) {\n  const raw = insightMap.ig_reels_avg_percentage_watched;\n  completionRate = raw > 1 ? Math.round(raw) : Math.round(raw * 100);\n}\n\n// Day of week\nconst DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst postDate = new Date(post.timestamp);\nconst mediaType = post._isReel ? 'Reel' : post._isCarousel ? 'Carousel' : 'Image';\n\nreturn [{\n  json: {\n    id: post.id,\n    timestamp: post.timestamp,\n    postDate: postDate.toLocaleDateString('en-US', {month:'2-digit', day:'2-digit', year:'numeric'}),\n    dayOfWeek: DAYS[postDate.getDay()],\n    mediaType,\n    caption,\n    hook,\n    ctaKeyword,\n    pillar,\n    reach: insightMap.reach || 0,\n    impressions: insightMap.impressions || 0,\n    videoViews: insightMap.video_views || 0,\n    completionRate,\n    saves: insightMap.saved || 0,\n    shares: insightMap.shares || 0,\n    comments: post.comments_count || 0,\n    likes: post.like_count || 0,\n    profileVisits: insightMap.profile_visits || 0,\n    follows: insightMap.follows || 0,\n  }\n}];"
+      },
+      "id": "d88e67ff-3aa7-4f8f-8aaf-0f201f203296",
+      "name": "Parse and Classify",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "allPosts",
+        "options": {}
+      },
+      "id": "96618f67-56d2-4071-8729-12cdc25b3d9e",
+      "name": "Aggregate Posts",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Grade all posts and build the weekly summary\nconst posts = $json.allPosts || [];\nconst weekOf = $('Set Variables').first().json.WEEK_OF;\n\nif (posts.length === 0) return [{ json: { gradedPosts: [], summary: {}, promptData: 'No posts this week.', weekOf } }];\n\nfunction clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }\n\n// Account averages (baseline for scoring)\nconst avgReach = posts.reduce((s, p) => s + (p.reach || 0), 0) / posts.length || 1;\nconst avgProfileVisits = posts.reduce((s, p) => s + (p.profileVisits || 0), 0) / posts.length || 1;\n\nfunction gradePost(post) {\n  const isReel = post.mediaType === 'Reel';\n\n  // Reach score (25pts): 2x avg = 25, 1x avg = 12, linear scale\n  const reachRatio = post.reach / avgReach;\n  let reachScore;\n  if (reachRatio >= 2) reachScore = 25;\n  else if (reachRatio >= 1) reachScore = Math.round(12 + (reachRatio - 1) * 13);\n  else reachScore = Math.round(reachRatio * 12);\n\n  // Completion score (25pts, Reels only)\n  let completionScore = null;\n  if (isReel && post.completionRate != null) {\n    if (post.completionRate >= 70) completionScore = 25;\n    else if (post.completionRate >= 50) completionScore = 18;\n    else if (post.completionRate >= 30) completionScore = 10;\n    else completionScore = 0;\n  }\n\n  // Saves score (20pts): target = 5% of reach\n  const savesRate = post.reach > 0 ? post.saves / post.reach : 0;\n  const savesScore = Math.round(clamp((savesRate / 0.05) * 20, 0, 20));\n\n  // Shares score (20pts)\n  let sharesScore;\n  if (post.shares >= 10) sharesScore = 20;\n  else if (post.shares >= 5) sharesScore = 14;\n  else if (post.shares >= 1) sharesScore = 8;\n  else sharesScore = 0;\n\n  // Profile visits score (10pts): scale vs avg\n  const pvRatio = post.profileVisits / avgProfileVisits;\n  const pvScore = Math.round(clamp(pvRatio >= 2 ? 10 : pvRatio * 5, 0, 10));\n\n  let total;\n  if (isReel && completionScore !== null) {\n    total = reachScore + completionScore + savesScore + sharesScore + pvScore;\n  } else {\n    // Redistribute completion weight proportionally for non-reels\n    const scaledReach = Math.round(reachScore * 2);\n    const scaledSaves = Math.round(savesScore * 1.25);\n    const scaledShares = Math.round(sharesScore * 1.25);\n    total = scaledReach + scaledSaves + scaledShares + pvScore;\n  }\n\n  const score = clamp(Math.round(total), 0, 100);\n\n  let gradeLabel, gradeColor;\n  if (score >= 80) { gradeLabel = '\ud83d\udfe2 DOUBLE DOWN'; gradeColor = '#34A853'; }\n  else if (score >= 55) { gradeLabel = '\ud83d\udfe1 MODIFY'; gradeColor = '#FFC000'; }\n  else if (score >= 30) { gradeLabel = '\ud83d\udd34 RETIRE'; gradeColor = '#EA4335'; }\n  else { gradeLabel = '\u26ab KILL IT'; gradeColor = '#434343'; }\n\n  return { ...post, performanceScore: score, gradeLabel, gradeColor };\n}\n\nconst gradedPosts = posts.map(gradePost);\nconst sorted = [...gradedPosts].sort((a, b) => b.performanceScore - a.performanceScore);\nconst top3 = sorted.slice(0, 3);\nconst worst = sorted[sorted.length - 1];\n\n// Pillar analysis\nconst pillarMap = {};\nfor (const p of gradedPosts) {\n  if (!pillarMap[p.pillar]) pillarMap[p.pillar] = { total: 0, count: 0 };\n  pillarMap[p.pillar].total += p.performanceScore;\n  pillarMap[p.pillar].count++;\n}\nlet bestPillar = 'N/A', bestPillarAvg = 0;\nfor (const [pillar, { total, count }] of Object.entries(pillarMap)) {\n  const avg = total / count;\n  if (avg > bestPillarAvg) { bestPillarAvg = avg; bestPillar = pillar; }\n}\n\n// CTA keyword usage\nconst ctaUsage = {};\nfor (const p of gradedPosts) {\n  if (p.ctaKeyword) ctaUsage[p.ctaKeyword] = (ctaUsage[p.ctaKeyword] || 0) + 1;\n}\n\n// Hook pattern analysis\nconst topHooks = top3.map(p => p.hook);\nconst hookPatterns = [];\nif (topHooks.some(h => h.includes('?'))) hookPatterns.push('Question hook');\nif (topHooks.some(h => /\\d/.test(h))) hookPatterns.push('Number/stat hook');\nif (topHooks.some(h => /\\byou\\b/i.test(h))) hookPatterns.push('Direct you-callout');\nif (topHooks.some(h => /\\bif\\b/i.test(h))) hookPatterns.push('Conditional if-hook');\nif (!hookPatterns.length) hookPatterns.push('Mixed patterns');\n\n// Averages\nconst reelPosts = gradedPosts.filter(p => p.mediaType === 'Reel' && p.completionRate != null);\nconst avgReachFinal = Math.round(gradedPosts.reduce((s, p) => s + p.reach, 0) / gradedPosts.length);\nconst avgCompletion = reelPosts.length\n  ? Math.round(reelPosts.reduce((s, p) => s + (p.completionRate || 0), 0) / reelPosts.length)\n  : null;\n\n// Format prompt for Claude\nconst postsBlock = sorted.map(p =>\n  `[${p.gradeLabel}] Score: ${p.performanceScore}/100\\n  Hook: \"${p.hook}\"\\n  Type: ${p.mediaType} | Pillar: ${p.pillar} | Day: ${p.dayOfWeek}\\n  Reach: ${p.reach} | Completion: ${p.completionRate != null ? p.completionRate + '%' : 'N/A'} | Saves: ${p.saves} | Shares: ${p.shares} | Profile Visits: ${p.profileVisits}${p.ctaKeyword ? '\\n  CTA Keyword: ' + p.ctaKeyword : ''}`\n).join('\\n\\n');\n\nconst ctaLine = Object.keys(ctaUsage).length\n  ? Object.entries(ctaUsage).map(([k, v]) => `${k}: ${v}x`).join(', ')\n  : 'None used';\n\nconst promptData = `Week of ${weekOf} \u2014 ${gradedPosts.length} posts analyzed\\nAvg Reach: ${avgReachFinal} | Avg Completion Rate (Reels): ${avgCompletion != null ? avgCompletion + '%' : 'N/A'}\\nBest Performing Pillar: ${bestPillar} (avg score: ${Math.round(bestPillarAvg)})\\nCTA Keywords Used: ${ctaLine}\\nTop Hook Patterns: ${hookPatterns.join(' | ')}\\n\\n=== ALL POSTS (sorted by score, high to low) ===\\n\\n${postsBlock}`;\n\nconst summary = {\n  weekOf,\n  totalPosts: gradedPosts.length,\n  avgReach: avgReachFinal,\n  avgCompletionRate: avgCompletion != null ? avgCompletion + '%' : 'N/A',\n  bestPillar: bestPillar + ' (avg score: ' + Math.round(bestPillarAvg) + ')',\n  top1: top3[0] ? `${top3[0].gradeLabel} | Score: ${top3[0].performanceScore} | \"${top3[0].hook}\"` : '',\n  top2: top3[1] ? `${top3[1].gradeLabel} | Score: ${top3[1].performanceScore} | \"${top3[1].hook}\"` : '',\n  top3: top3[2] ? `${top3[2].gradeLabel} | Score: ${top3[2].performanceScore} | \"${top3[2].hook}\"` : '',\n  worstPost: worst ? `${worst.gradeLabel} | Score: ${worst.performanceScore} | \"${worst.hook}\"` : '',\n  ctaKeywordsUsed: ctaLine,\n  hookPatterns: hookPatterns.join(' | '),\n};\n\nreturn [{ json: { gradedPosts, summary, promptData, weekOf } }];"
+      },
+      "id": "396e7dbf-45ac-4e6b-8180-5995ba6f16c2",
+      "name": "Grade and Summarize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split gradedPosts array back into individual items for Google Sheets\nconst { gradedPosts, weekOf } = $json;\n\nreturn (gradedPosts || []).map(p => ({ json: {\n  'Post ID': p.id,\n  'Week Of': weekOf,\n  'Post Date': p.postDate,\n  'Day Posted': p.dayOfWeek,\n  'Type': p.mediaType,\n  'Pillar': p.pillar,\n  'Hook': p.hook,\n  'CTA Keyword': p.ctaKeyword || '',\n  'Reach': p.reach,\n  'Impressions': p.impressions,\n  'Views': p.videoViews || '',\n  'Completion %': p.completionRate != null ? p.completionRate : '',\n  'Saves': p.saves,\n  'Shares': p.shares,\n  'Comments': p.comments,\n  'Likes': p.likes,\n  'Profile Visits': p.profileVisits,\n  'Follows': p.follows,\n  'Performance Score': p.performanceScore,\n  'Grade Label': p.gradeLabel,\n}}));"
+      },
+      "id": "8bb43f4f-35e2-4faf-aa26-f5fdbe6f270f",
+      "name": "Split Posts for Sheets",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Set Variables').first().json.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Weekly Posts"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Post ID"
+          ],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "55a4c114-28ab-4254-bd0b-377f5eadc340",
+      "name": "Write Posts Tab",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2300,
+        160
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Format the weekly summary as a flat row for Google Sheets\nconst s = $json.summary;\nreturn [{ json: {\n  'Week Of': s.weekOf,\n  'Total Posts': s.totalPosts,\n  'Avg Reach': s.avgReach,\n  'Avg Completion Rate': s.avgCompletionRate,\n  'Best Pillar': s.bestPillar,\n  'Top Post 1': s.top1,\n  'Top Post 2': s.top2,\n  'Top Post 3': s.top3,\n  'Worst Post': s.worstPost,\n  'CTA Keywords Used': s.ctaKeywordsUsed,\n  'Hook Patterns': s.hookPatterns,\n}}];"
+      },
+      "id": "117544d4-ae76-4bb0-83d8-e5ffcbfa7298",
+      "name": "Format Summary Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Set Variables').first().json.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Weekly Summary"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Week Of"
+          ],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "0730959b-f0cf-4819-bbe1-3295d299055d",
+      "name": "Write Summary Tab",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2300,
+        440
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the Claude API request body\nconst { promptData, weekOf } = $('Grade and Summarize').first().json;\n\nconst systemPrompt = `You are the content strategist for @dr.lane_o, the Pickleball Chiro brand.\n\nLane is a 5.0 DUPR competitive pickleball player and licensed chiropractor targeting serious recreational players aged 45-65 who fear being forced off the court by injury. His audience is \"Dave\" \u2014 a 52-year-old who plays 4x per week, has dealt with knee or shoulder issues, and is terrified of slowing down.\n\nFour content pillars:\n1. Pain & Injury \u2014 speaks to Dave's fear of injury ending his game\n2. Performance & Technique \u2014 validates Dave's competitive identity\n3. Recovery & Longevity \u2014 positions Lane as the answer to staying on court long-term\n4. Credibility & Story \u2014 builds trust through Lane's dual identity (5.0 player + DC)\n\nActive ManyChat keywords: KNEE, FREE\n\nMetric priorities (in order): reach (non-follower), completion rate, shares, saves, profile visits. Likes are a vanity metric \u2014 deprioritize.\n\nCore philosophy: The goal of every post is to OPEN A LOOP \u2014 mirror, validate, tease. Never fully explain. Hooks are everything. A bad hook on great content kills the post. Lane sounds like a competitive peer who happens to be a DC \u2014 not a clinical expert lecturing.`;\n\nconst userMessage = `Here is the Instagram performance data for @dr.lane_o for the week of ${weekOf}:\n\n${promptData}\n\nWrite the weekly Sunday content brief with these sections:\n\n## WHAT WORKED THIS WEEK (AND WHY)\nAnalyze each DOUBLE DOWN or MODIFY post. What hook patterns drove performance? What does this tell us about what Dave is thinking about right now?\n\n## WHAT FAILED AND THE DIAGNOSED REASON\nFor each RETIRE or KILL IT post: was it the hook, the pillar, the format, or the CTA? Be specific.\n\n## CONTENT TO DOUBLE DOWN ON THIS WEEK\nSpecific angles, hook styles, and pillars to push more of this week.\n\n## CONTENT TO RETIRE\nSpecific angles to stop using based on this week's data.\n\n## 3 HOOK IDEAS FOR NEXT WEEK\nWrite three ready-to-use hooks in Lane's voice \u2014 casual, competitive-peer tone. Include pillar and format (Reel/Carousel) for each.\n\n## PILLAR RECOMMENDATION FOR THE WEEK\nWhich pillar gets the most posts this week and why?\n\n## EXPERIMENT OF THE WEEK\nOne specific new angle or hook style to trial as a test. Include what success looks like.`;\n\nreturn [{ json: {\n  model: 'claude-sonnet-4-20250514',\n  max_tokens: 2000,\n  system: systemPrompt,\n  messages: [{ role: 'user', content: userMessage }],\n  _weekOf: weekOf,\n}}];"
+      },
+      "id": "91308b84-56a5-4c57-9d49-4d9f82e10656",
+      "name": "Format Claude Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2300,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $('Set Variables').first().json.ANTHROPIC_API_KEY }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: $json.model, max_tokens: $json.max_tokens, system: $json.system, messages: $json.messages }) }}",
+        "options": {}
+      },
+      "id": "5d4a33c0-9b59-4bcb-8eb9-2d8c5c94ea89",
+      "name": "Generate AI Report",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2520,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract report text from Claude response\nconst reportText = $json.content?.[0]?.text || 'Report generation failed \u2014 check API key and quota.';\nconst weekOf = $('Format Claude Prompt').first().json._weekOf;\n\nconsole.log(`AI Report generated \u2014 ${reportText.length} characters`);\n\nreturn [{ json: {\n  'Week Of': weekOf,\n  'AI Strategy Report': reportText,\n  _reportText: reportText,\n}}];"
+      },
+      "id": "36b31b75-0ed9-4d83-8258-1767c79ec236",
+      "name": "Extract Report Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2740,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Set Variables').first().json.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "AI Reports"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "3bf99a11-a819-45bd-911c-383f460fbad2",
+      "name": "Write AI Reports Tab",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2960,
+        600
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "8abe3814-7182-4217-a018-0ef1a04acc43",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log error details\nconst err = $json;\nconsole.error('AUDIT PIPELINE ERROR:', JSON.stringify(err, null, 2));\n\n// Extract useful error info\nconst errorMsg = err.error?.message || err.message || 'Unknown error';\nconst failedNode = err.execution?.lastNodeExecuted || 'Unknown node';\nconst workflowName = err.workflow?.name || 'Pickleball Chiro Audit';\n\nconsole.log(`Workflow: ${workflowName}`);\nconsole.log(`Failed at: ${failedNode}`);\nconsole.log(`Error: ${errorMsg}`);\n\nif (errorMsg.toLowerCase().includes('token') || errorMsg.toLowerCase().includes('oauth') || errorMsg.toLowerCase().includes('session')) {\n  console.log('ACTION REQUIRED: Instagram access token may be expired. Follow Step B4 in SETUP-GUIDE.md to refresh.');\n}\n\nreturn [{ json: { errorLogged: true, failedNode, errorMsg } }];"
+      },
+      "id": "167675e8-cdbd-46ec-ab12-0d0e7ec10afc",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        560
+      ]
+    }
+  ],
+  "connections": {
+    "Every Sunday 7AM": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Fetch Media List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Media List": {
+      "main": [
+        [
+          {
+            "node": "Extract Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Posts": {
+      "main": [
+        [
+          {
+            "node": "Set Metrics String",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Metrics String": {
+      "main": [
+        [
+          {
+            "node": "Fetch Insights",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Insights": {
+      "main": [
+        [
+          {
+            "node": "Parse and Classify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse and Classify": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Posts": {
+      "main": [
+        [
+          {
+            "node": "Grade and Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grade and Summarize": {
+      "main": [
+        [
+          {
+            "node": "Split Posts for Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Format Summary Row",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Format Claude Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Posts for Sheets": {
+      "main": [
+        [
+          {
+            "node": "Write Posts Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Summary Row": {
+      "main": [
+        [
+          {
+            "node": "Write Summary Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Claude Prompt": {
+      "main": [
+        [
+          {
+            "node": "Generate AI Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate AI Report": {
+      "main": [
+        [
+          {
+            "node": "Extract Report Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Report Text": {
+      "main": [
+        [
+          {
+            "node": "Write AI Reports Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Log Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "pickleball-chiro"
+    },
+    {
+      "name": "instagram-audit"
+    }
+  ],
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "id": "uIZltEORH0IkM8vV"
+}

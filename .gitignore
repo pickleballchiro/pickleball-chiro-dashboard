@@ -1,0 +1,73 @@
+# ─── Secrets — NEVER commit these ────────────────────────────────────────────
+.env
+.env.*
+instagram-audit/.env
+instagram-audit/google-credentials.json
+*-credentials.json
+service-account*.json
+
+# ─── Node ────────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+logs/
+*.log
+instagram-audit/logs/
+
+# ─── OS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.~lock.*
+
+# ─── Editor ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+
+# ─── Audit reports (regenerated weekly, not source) ──────────────────────────
+instagram-audit/reports/
+
+# ─── Local-only files ────────────────────────────────────────────────────────
+*.local
+
+# ─── HyperFrames renders ────────────────────────────────────────────────────
+my-first-video/renders/
+*.mp4
+*.mov
+
+# ─── Carousel output (regenerated) ──────────────────────────────────────────
+carousel_output/
+
+# ─── Office lock files ──────────────────────────────────────────────────────
+.~lock.*.xlsx#
+.~lock.*.docx#
+
+# ─── Local-only Claude/agent state ──────────────────────────────────────────
+.claude/
+.agents/
+
+# ─── Local business files (data lives in Google Sheets now) ─────────────────
+Pickleball_DC_Business_Tracker.xlsx
+Pickleball_Chiro_Coaching_System_v2.docx
+Pickleball_Chiro_PCMA_Addendum.docx
+
+# ─── Heavy/optional folders (not needed for dashboard) ──────────────────────
+Clinical Templates/
+Knee Pain Course/
+Make $ With Social Media/
+Insight Chiropractic/
+Guides/
+Images/
+
+# ─── Embedded git repo (deployed separately via Netlify) ────────────────────
+IG Bio Link/pickleballchiro-site
+
+# ─── Thumbnails + heavy media ───────────────────────────────────────────────
+my-first-video/.thumbnails/
+my-first-video/assets/

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pickleball Chiro — Command Center</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ─── SETUP OVERLAY ──────────────────────────────────────────────────── -->
+<div id="setup-overlay" style="display:none">
+  <div class="setup-card">
+    <h2>🏓 One-time setup needed</h2>
+    <p>Your dashboard needs a Google Sheets API key to read your data. This takes about 2 minutes.</p>
+    <ol>
+      <li>Go to <strong>console.cloud.google.com</strong></li>
+      <li>Open your existing project <strong>"My First Project"</strong></li>
+      <li>APIs &amp; Services → Credentials → <strong>+ Create Credentials → API Key</strong></li>
+      <li>Click the new key → Restrict to <strong>Google Sheets API</strong> only</li>
+      <li>Copy the key and open <code>dashboard/js/config.js</code></li>
+      <li>Replace <code>YOUR_API_KEY_HERE</code> with your key and save</li>
+      <li>Refresh this page</li>
+    </ol>
+    <p style="margin-top:16px">Or just tell me — I can walk you through it step by step.</p>
+  </div>
+</div>
+
+<!-- ─── TOKEN EXPIRY BANNER ────────────────────────────────────────────── -->
+<div id="token-warning"></div>
+
+<!-- ─── LOADING ────────────────────────────────────────────────────────── -->
+<div id="loading">
+  <div class="loader"></div>
+  <p>Loading your command center…</p>
+</div>
+
+<!-- ─── HEADER ─────────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-left">
+    <div class="logo-mark">🏓</div>
+    <div>
+      <div class="brand-name">The Pickleball Chiro</div>
+      <div class="brand-sub">Command Center</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="last-updated" id="last-updated">Loading…</span>
+    <button class="btn btn-primary" id="refresh-btn">
+      <span class="icon">↻</span>
+      <span class="spin">↻</span>
+      Refresh
+    </button>
+    <a class="btn btn-ghost" href="https://docs.google.com/spreadsheets/d/1JWo0C_cde5WH325iOnknNt9uxpTMNRT_bu1jqR6xftA" target="_blank">
+      📊 Sheet
+    </a>
+  </div>
+</header>
+
+<!-- ─── ERROR BANNER ───────────────────────────────────────────────────── -->
+<div id="error-banner" style="display:none">
+  <span>⚠️</span>
+  <span id="error-message"></span>
+</div>
+
+<!-- ─── MAIN ────────────────────────────────────────────────────────────── -->
+<main>
+
+  <!-- Weekly Focus (AI synthesized brief) -->
+  <div class="card focus-card" id="focus-card" style="display:none">
+    <div class="card-header">
+      <span class="card-title">🎯 Weekly Focus</span>
+      <span style="font-size:0.72rem;color:var(--text-dim)" id="focus-subtitle"></span>
+    </div>
+    <div class="card-body">
+      <div id="focus-content">Loading focus brief…</div>
+    </div>
+  </div>
+
+  <!-- Week label -->
+  <div class="section-label" id="week-label">This Week</div>
+
+  <!-- KPI Row — 5 cards, conversion-first -->
+  <div class="kpi-grid kpi-grid-5">
+    <div class="kpi-card">
+      <div class="kpi-label">Followers</div>
+      <div class="kpi-value orange" id="kpi-followers">—</div>
+      <div class="kpi-sub" id="kpi-followers-delta">tracking starts now</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Posts This Week</div>
+      <div class="kpi-value" id="kpi-posts">—</div>
+      <div class="kpi-sub" id="kpi-posts-sub">pieces of content</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Avg Reach / Post</div>
+      <div class="kpi-value" id="kpi-reach">—</div>
+      <div class="kpi-sub">accounts reached</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Top Score</div>
+      <div class="kpi-value" id="kpi-score">—</div>
+      <div class="kpi-sub" id="kpi-score-sub">out of 100</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Revenue This Week</div>
+      <div class="kpi-value" id="kpi-revenue">—</div>
+      <div class="kpi-sub" id="kpi-revenue-sub">link business sheet</div>
+    </div>
+  </div>
+
+  <!-- Secondary row: Cadence + Leads + Expenses -->
+  <div class="three-col">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📅 Posting Cadence</span>
+      </div>
+      <div class="card-body">
+        <div class="cadence-row">
+          <div>
+            <div class="cadence-big" id="cadence-this-week">—</div>
+            <div class="cadence-sub">posts this week</div>
+          </div>
+          <div class="chart-wrap" style="flex:1;min-width:0">
+            <canvas id="cadence-chart" style="max-height:80px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">💡 Leads This Week</span>
+      </div>
+      <div class="card-body">
+        <div class="kpi-value" id="kpi-leads">—</div>
+        <div class="kpi-sub" id="kpi-leads-sub">from CTA keywords + business sheet</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">💸 Expenses This Week</span>
+      </div>
+      <div class="card-body">
+        <div class="kpi-value" id="kpi-expenses">—</div>
+        <div class="kpi-sub" id="kpi-expenses-sub">link business sheet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Follower Growth full-width section -->
+  <div class="card" style="margin-bottom:22px">
+    <div class="card-header">
+      <span class="card-title">👥 Follower Growth</span>
+      <span style="font-size:0.72rem;color:var(--text-dim)" id="follower-tracking-note">Tracking from first audit run</span>
+    </div>
+    <div class="card-body">
+      <div class="follower-row">
+        <div class="follower-stats">
+          <div class="follower-stat">
+            <div class="follower-stat-label">Current</div>
+            <div class="follower-stat-value orange" id="follower-current">—</div>
+          </div>
+          <div class="follower-stat">
+            <div class="follower-stat-label">Today</div>
+            <div class="follower-stat-value" id="follower-today">—</div>
+          </div>
+          <div class="follower-stat">
+            <div class="follower-stat-label">This Week</div>
+            <div class="follower-stat-value" id="follower-week">—</div>
+          </div>
+          <div class="follower-stat">
+            <div class="follower-stat-label">This Month</div>
+            <div class="follower-stat-value" id="follower-month">—</div>
+          </div>
+        </div>
+        <div class="follower-chart-wrap">
+          <canvas id="follower-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Posts + Reach Chart -->
+  <div class="two-col-wide">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Top Posts This Week</span>
+      </div>
+      <div class="card-body">
+        <div id="top-posts">
+          <div class="empty-state"><div class="empty-icon">📭</div>No data yet</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Reach Trend (8 Weeks)</span>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrap">
+          <canvas id="reach-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Report + Grade Breakdown -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">AI Strategy Report</span>
+        <span id="ai-report-week" style="font-size:0.75rem;color:var(--orange)"></span>
+      </div>
+      <div class="card-body">
+        <div id="ai-report-text" class="report-text">Loading…</div>
+        <button class="btn-expand" id="ai-expand-btn">▼ Show full report</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Grade Breakdown</span>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrap">
+          <canvas id="grade-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Posts Table -->
+  <div class="card" style="margin-bottom:22px">
+    <div class="card-header">
+      <span class="card-title">All Posts This Week</span>
+    </div>
+    <div class="card-body" style="padding:0">
+      <div class="table-wrap">
+        <table class="posts-table">
+          <thead>
+            <tr>
+              <th>Hook</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th title="Profile Visits">Visits</th>
+              <th>Follows</th>
+              <th>Reach</th>
+              <th>Saves</th>
+              <th>Shares</th>
+              <th>Comments</th>
+              <th>Score</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody id="posts-table-body">
+            <tr><td colspan="11" style="text-align:center;color:var(--text-dim);padding:24px">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="grade-breakdown-panel" class="grade-panel" style="display:none">
+        <div class="grade-panel-header">
+          <span id="grade-panel-title">Score breakdown</span>
+          <button class="btn-expand" id="grade-panel-close">✕ Close</button>
+        </div>
+        <div id="grade-panel-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedule -->
+  <div class="card" style="margin-bottom:22px">
+    <div class="card-header">
+      <span class="card-title">📅 This Week's Schedule</span>
+      <span style="font-size:0.75rem;color:var(--text-dim)">Tell Claude to add appointments</span>
+    </div>
+    <div class="card-body">
+      <div id="schedule-wrap">
+        <div class="schedule-hint">Loading schedule…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent Activity Log -->
+  <div class="card" style="margin-bottom:24px">
+    <div class="card-header">
+      <span class="card-title">🤖 Agent Activity Log</span>
+      <a class="btn btn-ghost" id="run-audit-btn"
+         href="#" target="_blank"
+         style="font-size:0.75rem;padding:5px 10px"
+         title="Trigger a fresh audit run from GitHub Actions">
+        ▶ Run New Audit
+      </a>
+    </div>
+    <div class="card-body">
+      <div id="activity-log">Loading…</div>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/dashboard.js"></script>
+
+<script>
+  // Wire up "Run New Audit" button to GitHub Actions page once config loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const repo = window.DASHBOARD_CONFIG?.GITHUB_REPO;
+    if (repo && !repo.includes('YOUR_')) {
+      const btn = document.getElementById('run-audit-btn');
+      btn.href = `https://github.com/${repo}/actions/workflows/manual-audit.yml`;
+    }
+  });
+</script>
+
+</body>
+</html>

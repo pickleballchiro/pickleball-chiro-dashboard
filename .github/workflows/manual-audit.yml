@@ -1,0 +1,48 @@
+name: Manual Audit (On Demand)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you running this? (optional note)'
+        required: false
+        default: 'On-demand refresh'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: instagram-audit/package-lock.json
+
+      - name: Install dependencies
+        working-directory: instagram-audit
+        run: npm ci
+
+      - name: Write Google credentials
+        working-directory: instagram-audit
+        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > google-credentials.json
+
+      - name: Run audit pipeline
+        working-directory: instagram-audit
+        env:
+          INSTAGRAM_ACCESS_TOKEN:        ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          ANTHROPIC_API_KEY:             ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_SHEET_ID:               ${{ secrets.GOOGLE_SHEET_ID }}
+          GOOGLE_CREDENTIALS_PATH:       ./google-credentials.json
+        run: node run-now.js
+
+      - name: Clean up credentials
+        if: always()
+        working-directory: instagram-audit
+        run: rm -f google-credentials.json
