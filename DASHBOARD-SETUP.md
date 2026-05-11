@@ -10,7 +10,7 @@ Get your live dashboard running in ~15 minutes. Do these steps in order.
 2. Click **Add → Add Existing Repository**
 3. Navigate to this folder: `Pickleball Chiro/Pickleball Chiro`
 4. Click **Add Repository** (or "create a repository" if prompted)
-5. Name it: `pickleball-chiro` → set to **Private**
+5. Name it: `pickleball-chiro-dashboard` → set to **Private**
 6. Click **Publish Repository**
 
 ---
@@ -19,7 +19,7 @@ Get your live dashboard running in ~15 minutes. Do these steps in order.
 
 These replace the `.env` file so GitHub Actions can run the audit without your Mac.
 
-1. On GitHub.com → open your `pickleball-chiro` repo
+1. On GitHub.com → open your `pickleball-chiro-dashboard` repo
 2. Click **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret** and add each one below:
 
@@ -71,9 +71,9 @@ Now open `dashboard/js/config.js` and replace `YOUR_API_KEY_HERE` with your key.
 3. Branch: `main` → Folder: `/dashboard`
 4. Click **Save**
 5. Wait ~2 minutes → your dashboard will be live at:
-   `https://YOUR_GITHUB_USERNAME.github.io/pickleball-chiro/`
+   `https://pickleballchiro.github.io/pickleball-chiro-dashboard/`
 
-Also update `dashboard/js/config.js` — replace `YOUR_GITHUB_USERNAME/pickleball-chiro` with your actual GitHub username.
+Also update `dashboard/js/config.js` — replace `YOUR_GITHUB_USERNAME/pickleball-chiro-dashboard` with your actual GitHub username.
 
 ---
 
