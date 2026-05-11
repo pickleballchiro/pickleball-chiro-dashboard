@@ -30,7 +30,9 @@ jobs:
 
       - name: Write Google credentials
         working-directory: instagram-audit
-        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > google-credentials.json
+        env:
+          GCREDS_B64: ${{ secrets.GOOGLE_CREDENTIALS_B64 }}
+        run: echo "$GCREDS_B64" | base64 --decode > google-credentials.json
 
       - name: Run audit pipeline
         working-directory: instagram-audit
