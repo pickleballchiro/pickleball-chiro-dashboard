@@ -27,5 +27,5 @@ window.DASHBOARD_CONFIG = {
   IG_TOKEN_EXPIRY: '2026-06-26',
 
   // GitHub repo info — for "Run New Audit" button link
-  GITHUB_REPO: 'YOUR_GITHUB_USERNAME/pickleball-chiro',
+  GITHUB_REPO: 'pickleballchiro/pickleball-chiro',
 };
