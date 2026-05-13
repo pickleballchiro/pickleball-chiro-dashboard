@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'IG Bio Link/**'
       - 'dashboard/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
@@ -30,10 +31,10 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload dashboard artifact
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dashboard
+          path: './IG Bio Link'
 
       - name: Deploy to GitHub Pages
         id: deployment
