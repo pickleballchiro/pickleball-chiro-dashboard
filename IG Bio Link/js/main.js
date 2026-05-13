@@ -22,21 +22,6 @@ document.addEventListener('click', function (e) {
 });
 
 // ============================================================
-// LEAD CAPTURE FORM — Free Checklist
-// ============================================================
-const checklistForm = document.getElementById('checklist-form');
-const checklistThankyou = document.getElementById('checklist-thankyou');
-
-if (checklistForm) {
-  checklistForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    // TODO: Connect to email service (ConvertKit, Mailchimp, etc.)
-    checklistForm.style.display = 'none';
-    checklistThankyou.style.display = 'block';
-  });
-}
-
-// ============================================================
 // VIRTUAL COACHING INTEREST FORM
 // ============================================================
 const coachingForm = document.getElementById('coaching-form');

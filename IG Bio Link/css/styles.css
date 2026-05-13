@@ -390,6 +390,7 @@ section { padding: 32px 0; }
   padding: 22px 0;
   text-align: center;
 }
+.footer-guide-cta { display: inline-block; margin-bottom: 18px; }
 .site-footer p { font-size: 0.76rem; color: var(--gray-mid); margin-bottom: 6px; }
 .site-footer a { font-size: 0.82rem; color: var(--orange); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
