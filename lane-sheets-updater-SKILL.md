@@ -68,7 +68,7 @@ Before writing anything, resolve all required fields. Use today's date if no dat
 | To | "Client Address" unless Lane gives a specific location |
 | Miles (One Way) | Lane almost always states this — ask if missing |
 | Total Miles (RT) | = One Way × 2 (auto-calc in sheet, but log it) |
-| Deduction ($) | = Total Miles × $0.70 (2025 IRS rate) |
+| Deduction ($) | = Total Miles × $0.725 (IRS standard mileage rate — hardcoded in webhook) |
 
 ### Finance Tracker — Income fields
 | Field | Notes |
@@ -77,7 +77,7 @@ Before writing anything, resolve all required fields. Use today's date if no dat
 | Client / Source | Name or source |
 | Income Type | Mobile Chiro Visit / Pickleball Lessons / Digital Products (Guides) / Package Sales / Tournament / Other |
 | Description / Notes | Brief description |
-| Payment Method | Stripe / Venmo / Zelle / Cash / Card / Unknown |
+| Payment Method | Stripe / Venmo / Zelle / Cash / Card / Personal Checking / Unknown |
 | Amount ($) | Required — ask if missing |
 
 ### Finance Tracker — Expense fields
@@ -86,10 +86,15 @@ Before writing anything, resolve all required fields. Use today's date if no dat
 | Date | Today's date if not stated |
 | Vendor / Payee | Store, company, person |
 | Category | Equipment / Supplies & Balls / Software & Subscriptions / Marketing / Education & Courses / Mileage & Travel / Professional Services / Phone (Business %) / Other |
-| Description / Notes | What was purchased |
-| Payment Method | Card / Cash / Stripe / etc. |
-| Amount ($) | Required — ask if missing |
+| Description / Notes | What was purchased. For mixed-use items, include the business use % (e.g. "Insta360 X5 camera - content creation (80% business use)"). Log the **full purchase price** — let the accountant apply the % at filing. |
+| Payment Method | Card / Cash / Stripe / Personal Checking / etc. |
+| Amount ($) | Required — ask if missing. For items with a stated business use %, log the **full amount** (not the reduced amount) unless it's a recurring monthly subscription, in which case log only the business-use portion. |
 | Tax Deductible? | Yes for most legitimate business expenses; use judgment |
+
+### Mixed-use item rule
+When an item is used partly for business and partly personal:
+- **One-time purchases** (camera, laptop, paddle): log the **full price** with the business % noted in the description. The accountant applies the % at tax time.
+- **Recurring subscriptions** (Pictona membership, etc.): log only the **business-use dollar amount** (e.g. 50% of $50/mo = $25) since it recurs every month and the tracker total should reflect actual deductible amounts.
 
 ### Business Tracker — Lead fields
 | Field | Notes |
@@ -98,7 +103,7 @@ Before writing anything, resolve all required fields. Use today's date if no dat
 | Name | Full name |
 | Phone | If provided |
 | Email | If provided |
-| Lead Source | **Pictona / Instagram / Earl Brown / Referral / Other** — default to asking if unclear |
+| Lead Source | **Pictona / Instagram / Earl Brown / Referral / Direct DM / Other** — default to asking if unclear |
 | Service Interest | Mobile Chiro / In-Clinic Chiro / Pickleball Lessons / Digital Product |
 | Status | Default: **New** |
 | Follow-Up Date | Only if Lane specifies |
@@ -111,9 +116,9 @@ Before writing anything, resolve all required fields. Use today's date if no dat
 | Last Session | Date of session |
 | Sessions / Mo. | Update if new month |
 | Total Sessions | Increment by 1 per session |
-| Package Used | Increment by 1 if package client |
-| Package Left | Decrement by 1 if package client |
-| Total Paid ($) | Add new payment if applicable |
+| Package Used | Increment by 1 if package client (field: `sessions_used`) |
+| Package Left | Decrement by 1 if package client (field: `sessions_left`) |
+| Total Paid ($) | Add new payment if applicable — must include ALL payments (chiro + lessons) |
 | Outstanding ($) | Update if applicable |
 | Notes | Append any new context |
 
@@ -129,23 +134,21 @@ For **new entries** (mileage, income, expenses, new leads), you can write direct
 
 ## Step 4 — Write to the sheet
 
-Use the **webhook directly** via a `fetch` POST request — no n8n, no setup, no workflow lookup needed.
+Use the **Google Apps Script webhook directly** via curl. No n8n, no localtunnel, no setup needed.
 
-### Webhook URL (n8n via localtunnel — update if tunnel restarts)
+### Webhook URL (permanent — never changes)
 ```
-https://open-toys-throw.loca.lt/webhook/pickleball-chiro
+https://script.google.com/macros/s/AKfycbxLcsR_4HVnmf3GkJkSx2kOf2KErYONQvEHROXjMLuThcHjnCI6IulpcDOIDrE1-1AKJw/exec
 ```
 
-### How to call it
-Send a POST request with `Content-Type: application/json` and one of the payloads below. Use the `web_fetch` tool or run a `bash_tool` curl command.
+### How to call it — CRITICAL curl format
+Always use `--data`, never `-X POST -d`. Google Apps Script redirects POST requests; `-X POST` with `-L` silently switches to GET on redirect and loses the body.
 
-**Curl format (use bash_tool):**
 ```bash
-curl -s -X POST \
-  "https://open-toys-throw.loca.lt/webhook/pickleball-chiro" \
+curl -s -L \
+  --data '{ ...payload... }' \
   -H "Content-Type: application/json" \
-  -H "bypass-tunnel-reminder: true" \
-  -d '{ ...payload... }'
+  "https://script.google.com/macros/s/AKfycbxLcsR_4HVnmf3GkJkSx2kOf2KErYONQvEHROXjMLuThcHjnCI6IulpcDOIDrE1-1AKJw/exec"
 ```
 
 ### Action payloads
@@ -155,14 +158,14 @@ curl -s -X POST \
 {
   "action": "log_mileage",
   "client_name": "Laura Cadigan",
-  "miles_one_way": 20,
+  "miles_one_way": 26,
   "type": "Mobile Chiro",
   "from": "Home",
   "to": "Client Address"
 }
 ```
 
-**Log income → Finance Tracker (💰 Income tab)**
+**Log income → Finance Tracker (Income tab)**
 ```json
 {
   "action": "log_income",
@@ -174,7 +177,7 @@ curl -s -X POST \
 }
 ```
 
-**Log expense → Finance Tracker (🧾 Expenses tab)**
+**Log expense → Finance Tracker (Expenses tab)**
 ```json
 {
   "action": "log_expense",
@@ -198,6 +201,17 @@ curl -s -X POST \
 }
 ```
 
+**Update lead → Business Tracker (Leads tab)**
+```json
+{
+  "action": "update_lead",
+  "name": "John Smith",
+  "status": "Converted",
+  "follow_up": "",
+  "notes": ""
+}
+```
+
 **Add client → Business Tracker (Clients tab)**
 ```json
 {
@@ -206,14 +220,56 @@ curl -s -X POST \
   "phone": "",
   "email": "",
   "package": "8-Session Package",
-  "sessions_total": 8,
+  "sessions_included": 8,
+  "sessions_used": 0,
+  "sessions_left": 8,
+  "total_paid": 0,
   "notes": ""
+}
+```
+
+**Update client → Business Tracker (Clients tab)**
+```json
+{
+  "action": "update_client",
+  "name": "Laura Cadigan",
+  "last_session": "05/18/2026",
+  "sessions_total": 3,
+  "sessions_used": 2,
+  "sessions_left": 6,
+  "total_paid": 1270,
+  "notes": "Session 3 of 8-session package."
+}
+```
+
+**Delete rows by row number (any sheet)**
+```json
+{
+  "action": "delete_rows",
+  "sheet": "mileage",
+  "start_row": 8,
+  "end_row": 9
+}
+```
+`sheet` must be `"mileage"`, `"finance"`, or `"business"`. `tab` is optional for sheets with multiple tabs.
+
+**Fix income running-total formulas (one-time repair)**
+```json
+{ "action": "fix_income_formulas" }
+```
+
+**Delete duplicate client/lead rows by name**
+```json
+{
+  "action": "delete_duplicate_rows",
+  "tab": "Clients",
+  "name": "John Smith"
 }
 ```
 
 ### Expected response
 ```json
-{ "status": "ok", "message": "Mileage logged", "row": [...] }
+{ "status": "ok", "message": "..." }
 ```
 If `status` is `"error"`, report the message to Lane and do not retry without investigating.
 
@@ -223,8 +279,8 @@ Show Lane exactly what would be logged in a clean table format, confirm it looks
 ### What to tell Lane after writing
 Always confirm what was logged in a clean, brief summary:
 ```
-✅ Logged to Mileage Log — April 22, Laura Cadigan, 20 miles (40 RT), $28.00 deduction
-✅ Logged to Finance Tracker — $195 income, Mobile Chiro Visit, Stripe
+✅ Logged to Mileage Log — May 18, Laura Cadigan, 26 miles (52 RT), $37.70 deduction
+✅ Logged to Finance Tracker — $80 income, Pickleball Lessons, Cash
 ```
 Keep it short. Lane doesn't need a paragraph — just confirmation it's done.
 
@@ -238,6 +294,9 @@ Keep it short. Lane doesn't need a paragraph — just confirmation it's done.
 - **Lead source unclear:** Default to asking — this data matters for tracking what's working.
 - **Session with non-package client:** Still log the session; skip package fields.
 - **Cash payment:** Still income — log it with "Cash" as the method.
+- **Personal card/checking:** Fine to log — what matters is business use, not which account paid.
+- **Recurring monthly subscriptions:** Log each month's charge as a separate expense entry with that month's date.
+- **Mixed-use items:** See the Mixed-use item rule in Step 2 above.
 
 ---
 

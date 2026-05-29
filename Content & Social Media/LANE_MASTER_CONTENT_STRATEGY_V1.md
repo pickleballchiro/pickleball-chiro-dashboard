@@ -1,6 +1,6 @@
 # LANE ODOM — @dr.lane_o — MASTER CONTENT STRATEGY
 ### The single reference document for every piece of content created for this account
-*Last updated: April 2026 — V2 | Pickleball Chiro brand | Built on avatar research, competition intel, Tim system architecture, hook mastery framework, Lane's uploaded brand documents, 2026 algorithm research, and Hormozi invisible-influence framework*
+*Last updated: May 2026 — V4 | Pickleball Chiro brand | STRATEGIC PIVOT: Primary identity shifted to pickleball performance coach. Coaching and skill content lead (70%). Performance/movement secondary (20%). Pain/longevity backend only (10%). Chiropractic is a differentiator, not the headline.*
 
 ---
 
@@ -8,7 +8,7 @@
 
 1. [The Business at a Glance](#1-the-business-at-a-glance)
 1a. [The Core Selling Philosophy](#1a-the-core-selling-philosophy) ⭐ CRITICAL — READ FIRST
-2. [Dave — The Only Person Lane Talks To](#2-alex--the-only-person-lane-talks-to)
+2. [Dave — The Only Person Lane Talks To](#2-dave--the-only-person-lane-talks-to)
 3. [Lane's Voice & Positioning](#3-lanes-voice--positioning)
 4. [The Instagram Algorithm — What Actually Matters](#4-the-instagram-algorithm--what-actually-matters)
 4a. [The Profile Trust Gauntlet & Pinning Strategy](#4a-the-profile-trust-gauntlet--pinning-strategy)
@@ -36,17 +36,18 @@
 
 **Account:** @dr.lane_o
 **Brand name:** Pickleball Chiro
-**Who Lane is:** Dr. Lane Odom — Doctor of Chiropractic, 5.0 DUPR competitive player, 10-year tennis veteran, based in Ormond Beach / Volusia County FL (relocating Tallahassee ~1 year)
-**Primary digital product:** Pickleball Knee Pain Guide ($17) — Stan Store ✅ LIVE
-**ManyChat keyword:** KNEE (live and active)
-**Revenue model:** Instagram Reels + Carousels → "Comment KNEE" or "DM me KNEE" CTA → ManyChat automation → Stan Store purchase page → IRL lesson or chiro booking pipeline
-**Funnel entry:** Instagram organic content → ManyChat comment trigger → DM sequence → Stan Store
-**Secondary revenue:** Private pickleball lessons ($75/hr solo, $100/hr 2+ players) | Mobile chiropractic ($150 intro, $195 performance) | In-clinic at Insight Chiropractic (insurance-based)
-**Tools in use:** CapCut (editing, 9:16 1080p), ManyChat (keyword automation), Stan Store (digital product sales), Instagram (primary platform — only platform right now)
+**Who Lane is:** Dr. Lane Odom — pickleball performance coach, Doctor of Chiropractic, 4.9 DUPR competitive player, 10-year tennis veteran, based in New Smyrna Beach / Volusia County FL (relocating Tallahassee in 4-5 months)
+**Primary offer:** Pickleball lessons and coaching — in-person, packages, group (⭐ LIVE and actively booking)
+**Primary ManyChat keyword:** LESSONS (booking conversations) | DRILLS (skill/technique content)
+**Revenue model:** Instagram skill/technique/coaching content → DM me to work together" or "Comment READY" → booking conversation → lesson packages + recurring clients → $800-1000/week goal
+**Funnel entry:** Skill and technique Reels → profile trust → DM booking conversation → lesson package
+**Backend revenue:** Pickleball Knee Pain Course ($97) — digital product, exists, not actively promoted | Mobile chiropractic (premium only, $3000+ package, organic inquiry only — NEVER promoted)
+**Digital products still live:** Free Knee Pain Guide (lead magnet, Kit) | Knee Pain Course ($97, Gumroad) — both exist and convert but are not the primary content driver
+**Tools in use:** CapCut (editing, 9:16 1080p), ManyChat (keyword automation), Stan Store/Gumroad (digital product sales), Instagram (primary platform — only platform right now)
 **Content production:** B-roll from real gameplay and court sessions; Oswald Bold text overlays; Court Orange (#F05A28) accent system
 
 **The one-sentence mission:**
-> Make Dave feel so precisely understood and so specifically curious that buying the $17 knee guide — or booking a session — feels like the obvious next move for a serious player who takes their body seriously.
+> Show up as the coach serious recreational players are already looking for — so that booking a lesson feels like the obvious next move for a player who has plateaued and is ready to actually fix it.
 
 ---
 
@@ -54,149 +55,157 @@
 
 > This section governs every piece of content Lane creates. It supersedes any instruction elsewhere that conflicts with it.
 
-### The Single Most Important Insight
+### Two Content Modes — Both Are Valid
 
-**"You've been taught to educate instead of sell decisions — and that's why content gets likes but no bookings."**
+Lane now operates in two modes, and both serve the same goal: get Dave to book a session.
 
-When Lane explains the full mechanism in free content — why the elbow hurts, exactly what's happening upstream in the swing chain, the specific exercises to fix it — Dave gets the dopamine hit of finally understanding. The curiosity loop closes. He feels informed. He moves on. He has no reason to DM Lane, no reason to buy the guide, no reason to book a session. Lane already gave him what he came for.
+**MODE 1 — ENGAGEMENT/CONVERSION (loop-opening):**
+Opens a loop, mirrors Dave's experience, creates desire without completing the explanation. Dave feels understood and curious — never educated and satisfied. This is the classic "decision-selling" approach. Still used for plateau content, identity content, belief violations, mechanism teases, and conversion posts.
 
-**Content does not educate. Content mirrors, validates, and opens loops that only the guide or a session closes.**
+**MODE 2 — TEACHING/VALUE (coaching demonstration):**
+Gives a genuine technique tip or coaching insight. Real, actionable instruction. Lane earns trust by demonstrating he can actually teach — not just tease. Dave sees Lane coach well → believes Lane can help him specifically → books.
 
-This is the central error every sports-medicine creator makes: they lead with their clinical knowledge because it feels like proof of value. It is proof of value. But proof of value given away completely is a reason NOT to pay. The expertise is demonstrated by HOW PRECISELY Lane understands Dave's situation — not by explaining the mechanism in a caption.
+**The key insight for Mode 2:** In coaching, the value isn't in knowing the tip — it's in having Lane's eyes on your specific game. Dave can watch a reset tip and still pop it up under pressure in a real match. That gap between knowing and executing is exactly what a session closes. Teaching content builds trust that tease content alone cannot build.
 
-### The Four-Beat Emotional Arc
+**The one test for Mode 1:** After reading this content, does Dave feel *understood and curious* — or *educated and satisfied?* Understood and curious books sessions. Educated and satisfied scrolls.
 
-Every reel, every carousel, every caption moves Dave through this exact sequence. In this order. Every time.
+**The one test for Mode 2:** After watching this, does Dave think "I can see how he coaches — I want that on my game specifically"? If yes — it worked. If he feels fully solved and moves on — pull back on completeness.
+
+### The Four-Beat Emotional Arc (Mode 1)
+
+Used for engagement, identity, and conversion content. Moves Dave through this sequence:
 
 **1. RECOGNITION — "That's exactly me."**
-Name Dave's specific experience with precision. Not "knee pain" — "the knee that feels fine in game one, starts talking in game three, and you spend the drive home wondering how many sessions you have left before it becomes a real problem." The more specific, the stronger the recognition.
+Name Dave's specific experience with precision. "Your third shot works in warmup and falls apart the second the point matters" lands harder than "inconsistent third shot." The more specific, the stronger the recognition.
 
-**2. VALIDATION — "It's not because I'm old."**
-Name why Dave's attempts failed — without blaming Dave for trying them. "You iced it. You rested it. You backed off for two weeks. It came back the first day you played full. That's not a willpower problem. That's a root-cause problem."
+**2. VALIDATION — "It's not because I'm not good enough."**
+Name why Dave's attempts failed — without blaming him for trying. "You've drilled it. You've watched the YouTube breakdown. It helps for a day. Then you're back in the same pattern." That's not a commitment problem. That's a diagnosis problem.
 
 **3. THE GAP — "There's something I don't know yet."**
-Hint that a specific, fixable cause exists that nobody in Dave's world has identified. Name that it exists. Never explain it.
-- ✅ "The reason your knee keeps coming back has nothing to do with the knee."
-- ❌ "Your knee pain is caused by poor hip mobility and a faulty split-step pattern that overloads the medial compartment on lateral push-off."
+Hint that a specific, fixable cause exists that nobody has caught. Name that it exists. Never explain it.
+- ✅ "The reason your reset keeps popping up has nothing to do with your grip."
+- ❌ "Your reset pops up because your paddle face is open at contact and your elbow is leading instead of your shoulder."
 
-The first creates desire. The second closes the loop. Only one of these sells guides or sessions.
+The first creates desire. The second closes the loop. Only one of these leads to a DM.
 
-**4. DECISION — "This is where I get it."**
-Make commenting KNEE or DMing Lane feel like an act of self-respect — the move of a serious player who is done managing symptoms and ready to actually fix the thing.
+**4. DECISION — "This is where I fix it."**
+Make commenting READY feel like the move of a serious player who is done guessing and ready to actually fix the thing.
 
-**The one test:** After reading this piece of content, does Dave feel *understood and curious* — or *educated and satisfied?* Understood and curious books sessions. Educated and satisfied scrolls.
+### The Teaching Arc (Mode 2)
 
-### What NEVER Goes in Free Content
+Used for technique tips, drill breakdowns, coaching observations. Structure:
 
-These are completed answers. They belong inside the paid guide or a booked session only.
+**1. HOOK:** State the topic clearly. "Here's why your reset keeps popping up — and the actual fix." This is okay in Mode 2.
 
-- The specific upstream joint causing the knee issue (hip, ankle, thoracic)
-- The exact movement pattern causing overload (faulty split step, lateral push mechanics)
+**2. TEACH:** Give the real mechanic. Name the specific adjustment. Show it on camera. Be genuinely helpful.
+
+**3. THE REAL GAP:** "Knowing this and being able to execute it under real match pressure are two different things. That gap is what we work on in a session." — this is how Mode 2 content converts without withholding.
+
+**4. ORGANIC CTA:** "If you want to work on this specifically — comment READY and I'll reach out." Not a pitch. An invitation.
+
+### What Never Goes in Engagement/Conversion Content (Mode 1 Only)
+
+These are completed answers that belong inside a session — not in loop-opening content:
+- The specific fix for a technique breakdown
 - Named exercises or protocols with sets/reps
-- Specific swing mechanics corrections that eliminate elbow pain
-- Any "here's what to do" numbered sequence
-- Any diagnosis of a specific shot type causing a specific injury
-- The T-spine / shoulder connection explained in full
-- The exact recovery protocol between sessions
-- Specific paddle or grip recommendations tied to injury mechanism
+- The root cause of a recurring injury explained fully
+- Any "here's exactly what to do" sequence
+- The mechanism revealed in full
 
-**The rule:** If it answers "what do I do" or "what exactly is wrong" → it lives in the guide or the session. If it answers "why this keeps happening and why what I tried didn't work" → it can live in content, but only partially. Name the category of cause. Never complete the explanation.
-
-### The Snippet Strategy
-
-Lane's knowledge covers multiple domains: swing mechanics, body chain, movement patterns, recovery, paddle science, strength and conditioning. These are breadcrumbs, not lessons.
-
-Each snippet does three things:
-1. Names a gap Dave didn't know existed ("the reason icing delays recovery, not accelerates it")
-2. Validates that the gap is real ("I see this in the clinic every week")
-3. Points toward the guide or session as the place where the gap gets filled ("DM me KNEE and I'll walk you through the three questions I ask every player before I touch their knee")
-
-The snippet strategy means no single piece of free content ever completes the picture. Each post is a piece of a puzzle that only assembles inside the guide or on the court with Lane.
+**Mode 2 content CAN include specific tips, techniques, and actionable steps.** That's the point — it builds trust by demonstrating real coaching value.
 
 ### Content Sells Decisions, Not Information
 
-Dave does not need more information. Dave has Googled knee pain. Dave has watched YouTube. Dave has done a round of PT. Dave does not have a knowledge deficit — Dave has a *solution deficit.* They haven't found the right solution yet, not the right information.
+Dave has Googled his problem. He's watched YouTube. He's taken group clinics. He does not have a knowledge deficit — he has a *solution deficit.* The right solution for him specifically, delivered by someone who can actually see his game.
 
-Lane's content is not a resource center. It is a decision engine. The decision is: "This person gets my situation better than anyone I've encountered. I want to work with them / buy their guide."
-
-Every word in every post is either moving Dave toward that decision or not. There is no neutral content.
+Lane's content is a trust engine. Every post is either moving Dave toward "this person gets my game and I want them watching me play" — or it's not. There is no neutral content.
 
 ---
 
-## 2. ALEX — THE ONLY PERSON LANE TALKS TO
+## 2. DAVE — THE ONLY PERSON LANE TALKS TO
 
 > Every piece of content is written for Dave and only Dave. Not for the casual player. Not for beginners. Not for coaches. For Dave — specifically.
 
-### The One-Paragraph Version
+### Avatar Priority (Post-Pivot)
 
-Dave is a 50-something serious recreational pickleball player who has made this sport the center of their active life. They play 4-5 days a week. They follow pro tournaments. They've invested in clinics, better paddles, and lessons. And lately, something in their body has started pushing back — a knee that aches after long sessions, a shoulder that won't cooperate on overheads, an elbow that lights up on every drive. They've been told to rest. They don't want to rest. They want someone who actually plays the game at a high level AND understands the body — someone who gets why stopping isn't an option. Lane is the only person in their world who is both.
+**PRIMARY AVATAR — The Plateaued Player:** 3.0–4.0 DUPR player who has been playing 1-3 years, is stuck at their current rating, and cannot figure out why. They've had some lessons. They play 3-5x per week. They are frustrated. Their core desire: break through to the next level, beat the players who keep beating them, finally win their bracket. They are a competitive recreational player who will invest in coaching if they believe the coach can actually move the needle. Age range 40-65. Disposable income. Takes the game seriously.
+
+**SECONDARY AVATAR — The Newer Player:** 35-55, hooked on pickleball, wants to accelerate development and avoid picking up bad habits. 6 months to 1 year in. Coachable and excited. Often willing to invest early.
+
+**TERTIARY AVATAR — The Pain Patient:** Has a knee, elbow, or joint issue affecting their play. Served by the backend digital products (free guide, $97 course) and the mobile chiro (premium). This avatar exists and buys — they are NOT who content is primarily built around. When they find Lane through technique content, the backend products are there for them.
+
+### The One-Paragraph Version (Primary Avatar)
+
+Dave is a serious recreational player who has plateaued at 3.5 and can't crack 4.0. They've been playing for two years. They've taken a few group clinics and watched hours of YouTube. They play 4 times a week. And they're losing to the same players over and over, watching their resets pop up, getting demolished at the kitchen, wondering why their third shot works in warmup and falls apart in a real point. They know they need coaching. They've been skeptical that generic advice will help. And then they find a coach who plays at 5.0, came from 10 years of competitive tennis, and actually watches the body underneath the shot — not just the swing. That's Lane. And when Dave sees that combination, they book.
 
 ### Who Dave Is
 
 | Characteristic | Detail |
 |---|---|
-| **Age range** | 45–65, core is 50–60. Old enough to have the time and income for serious pickleball. Young enough to still be competitive and unwilling to accept physical decline. |
-| **Gender** | Both male and female. Sport is roughly 50/50. Primary Dave in this document skews slightly male (52M) but all content must work for both. |
-| **Location** | Suburban and coastal Florida first. Anywhere with a serious pickleball community. Plays outdoors at dedicated courts — Pictona, Earl Brown Park, or equivalent. |
-| **Skill level** | 3.5–4.5 DUPR or UTPR. Serious enough to compete in local tournaments. Not casual — this is the player who takes open play seriously and has opinions about their rating. |
-| **Income & spending** | Dual income or retired with discretionary income. Has spent $200+ on a paddle. Attends clinics. Pays for lessons when they think the coach is worth it. Price is not the barrier — perceived value is. |
-| **Pickleball schedule** | Plays 4-5 sessions per week. Has standing games. Has a regular group. The calendar revolves around court time. |
-| **Health approach** | Active adult who takes body maintenance seriously — on their terms. Has tried foam rolling, PT, stretching routines. Has probably seen a chiropractor before, but not one who understands pickleball specifically. |
+| **Age range** | 40–65, core is 45–60. Old enough to have the time and income for serious pickleball. Still competitive and frustrated by stagnation. |
+| **Gender** | Both male and female. Sport is roughly 50/50. Primary Dave skews slightly male (50M) but all content must work for both. |
+| **Location** | Suburban and coastal Florida first (NSB, Volusia County, Tallahassee in 4-5 months). Anywhere with a serious pickleball community. Pictona, Earl Brown Park, Southwood, Killearn Estates, Bradfordville. |
+| **Skill level** | 3.0–4.0 DUPR or UTPR (primary). 4.0–4.5 (secondary — wants to push toward 5.0 territory). Serious enough to know their rating and care about improving it. |
+| **Income & spending** | Dual income or retired with discretionary income. Has spent $200+ on a paddle. Attends clinics. Pays for lessons when they believe the coach is worth it. Price is not the barrier — perceived value is. |
+| **Pickleball schedule** | Plays 3-5 sessions per week. Has standing games. Has a regular group. The calendar revolves around court time. |
+| **Coaching history** | Has taken group clinics, maybe one or two private lessons. Results were mixed — general advice that helped temporarily. Looking for someone who can diagnose their specific game, not give generic tips. |
 
 ### What Dave Is NOT
 
 - Not a casual rec player who picks up a paddle twice a month
-- Not someone who accepts "just rest" as a medical answer
-- Not a beginner looking for basics — they already have game
-- Not looking for a generalist coach or a generalist chiropractor — they need a specialist who speaks their language
+- Not a beginner looking for the basics — they already have game, they've plateaued
+- Not looking for a generalist clinic or generic YouTube advice — they need a specialist who can watch their specific game and diagnose why they're stuck
+- Not primarily a pain patient (that's tertiary — the backend products handle them)
 
 ### Dave's Daily Life — Use These Details in Content
 
-**The Morning:** Dave is up early. Courts open at 7 or 7:30 and they want to be there. Maybe coffee first. The car has court shoes, extra grips, possibly a knee sleeve on the passenger seat — not because they need it every day, but because some days they do. They warm up — they just wish the warmup they were doing was actually right for pickleball.
+**The Morning:** Dave is up early. Courts open at 7 or 7:30 and they want to be there. Coffee first. They show up, warm up, and start playing. They have a regular group. They know who the better players are. They're paying attention to their own game — what worked, what didn't, why they lost that rally they should have won.
 
-**The Playing Style:** Dave is a student of the game. Watches pro matches, has opinions on third-shot drops vs. drives, knows who Ben Johns is. Probably competitive about their rating. Has a favorite shot that works really well and a shot they're trying to fix. The physical breakdown they're experiencing traces back to a movement pattern, a shot type, or a volume issue that someone who plays at Lane's level would recognize immediately.
+**The Playing Style:** Dave is a student of the game. Watches pro matches, has opinions on third-shot drops vs. drives, knows who Ben Johns is. Competitive about their rating. Has a favorite shot that works really well. Has a shot that works in warmup and breaks down under pressure. Has a pattern they keep losing to and can't figure out why. The gap between what they think they're doing and what's actually happening is exactly what Lane sees in the first 10 minutes.
 
-**The Physical Reality:** Something is not working the way it used to. Maybe one specific thing — the knee that started aching in game three six months ago and never fully went away. Or a slower creeping thing — less pop in the leg drive, a shoulder that's stiffer in the morning, a forehand that loses power when fatigued. Dave has done some self-treatment: ice, Advil, backing off for a week. They've done a round of PT. The thing got better, came back. They have quietly started wondering if this is just what getting older feels like — and they resent that thought.
+**The Performance Frustration:** Something is not clicking. The reset keeps popping up. The third shot drops fine in warmup and falls apart when the point matters. They're losing to players they feel like they should be beating. They've tried watching videos, working on it in drills — it helps for a day, then reverts. They've had some coaching that gave them tips. Tips didn't stick. They're starting to think they need someone who can actually watch them specifically, not give them what they give everyone else.
+
+**The Physical Reality (Secondary — applies to tertiary avatar):** Some Daves also have a physical issue — a knee that talks in game three, an elbow that flares after a long session. This is real. The backend digital products and mobile chiro serve this. But this is no longer the primary frame for who Lane talks to in content.
 
 ### Dave's Pain Points — In Their Own Words
 
 Use these phrases verbatim in hooks, captions, and carousels. Their own language is more powerful than any translation.
 
-**On injury and physical limitation:**
-- "My knee started bothering me a few months ago and I've been just pushing through it."
-- "The PT helped but as soon as I went back to full play it came back."
-- "Every chiropractor I've seen just tells me to take it easy. I don't want to take it easy."
-- "I can feel it's not right but it's not bad enough to stop playing. So I'm just managing it."
-- "I've tried everything — KT tape, ice baths, stretching more. It's still there."
-- "I've accepted that my body just doesn't recover like it used to."
-- "I know I should get it looked at but I'm afraid they're going to tell me to stop playing."
-
-**On performance and coaching:**
+**On plateau and performance (PRIMARY — use these most):**
 - "I want to get to the next level but I've kind of plateaued."
 - "I've taken lessons from a couple different coaches and it helps for a bit then I revert."
 - "I need someone who actually plays at a high level, not just someone who teaches beginners."
 - "My reset is terrible and I know it but I can't figure out what I'm doing wrong."
+- "My third shot drop works in warmup and falls apart the second the point matters."
+- "I keep losing to the same players and I don't know what they're doing that I'm not."
+- "I've been stuck at 3.5 for a year and I can't figure out why I can't break through."
+- "I feel like I have decent strategy but my technique breaks down under pressure."
+- "Every clinic I take helps for a week and then I'm right back to where I was."
+- "I want someone who can actually watch my specific game — not just give me general tips."
 - "I have the strategy but my body doesn't always do what I tell it to."
 
-**On finding help:**
-- "My regular doctor has no idea what pickleball even is."
-- "I went to a sports medicine clinic and they basically just said to ice it and rest."
-- "I don't need someone to manage my symptoms. I need someone to actually fix the problem."
-- "I wish there was someone who could watch me play and tell me if it's a form issue or a body issue."
+**On finding the right coach:**
+- "I need a coach who actually plays at a high level, not someone who learned the game at 50."
+- "I've tried group clinics but I need someone looking at my game specifically."
+- "I want someone who can tell me what I'm doing wrong, not just drill me on what everyone does wrong."
 - "I'd love to find someone who gets the sport AND knows how to keep me in it."
+
+**On injury and physical limitation (TERTIARY — still real, serves the backend products):**
+- "My knee started bothering me a few months ago and I've been just pushing through it."
+- "The PT helped but as soon as I went back to full play it came back."
+- "I've accepted that my body just doesn't recover like it used to."
+- "I know I should get it looked at but I'm afraid they're going to tell me to stop playing."
 
 ### The Core Wound
 
-Dave's deepest fear is not pain. Pain is manageable. The fear is below that.
+**Primary Dave (Plateaued Player):** The core wound is stagnation and the fear that they've hit their ceiling. Dave has invested time, money, paddles, and ego into this game. They've played hundreds of hours. They've taken lessons. They've watched video. And they're STILL losing to the same players. STILL resetting badly. STILL can't figure out why. The deeper fear: "Maybe I'm just not talented enough to get better. Maybe this is as good as I get."
 
-**Dave's core fear: "I'm going to have to quit."**
+Content that speaks to plateau frustration and names the specific, fixable thing they haven't tried yet — that stops Dave cold.
 
-Not quit today. Not quit this week. But eventually. Gradually. The court time decreasing, the sessions getting shorter, the games missed because the knee just isn't up for it. Pickleball isn't just exercise for Dave — it's community, competition, identity. It's the thing they look forward to every morning. The idea that their body might take that away — that is the emotional truth underneath every physical complaint.
+**The failed coaching graveyard:**
+Dave has tried coaching before. Group clinics where the instructor gave the same tips to everyone. One-off private lessons that helped for a session and then the habit reverted. YouTube videos that made sense in theory but didn't transfer to match play. These failures have made Dave skeptical of generic solutions. The hook that breaks through is not a promise — it is evidence that Lane has diagnosed their *specific* problem better than anyone who has looked at their game before.
 
-Content that speaks to identity — not just symptoms — is what stops Dave cold.
-
-**Secondary emotional layer — the failed intervention graveyard:**
-Dave has been failed before. PT that helped for a week then stopped. Rest periods that let the body heal just enough to get back on court, then it came back. A coach whose advice made sense in the lesson and disappeared in match play. These failures have made Dave skeptical of generic solutions. The hook that breaks through is not a promise — it is evidence that Lane understands the *specific* problem better than anyone else Dave has encountered.
+**Tertiary Dave (Pain Patient):** Still real. Core wound: "I'm going to have to quit." The identity threat from injury. This Dave is served by the backend products and mobile chiro. When this Dave finds Lane through technique content, the backend funnel is there.
 
 ### What Dave Has Tried (That Didn't Fully Work)
 
@@ -204,65 +213,77 @@ Lane's content must never make Dave feel stupid for what they tried. The problem
 
 | What Dave Tried | Why It Didn't Stick |
 |---|---|
-| Generic physical therapy | Exercises built for general knee/shoulder rehab — not pickleball-specific movement demands. Felt better at rest. Broke down again at pace. |
-| Rest | Works temporarily, returns when they go back to full play. Never addressed root cause. |
-| Generic chiropractor | Adjusted the area that hurt. Never watched them move, never asked about their sport, never connected the adjustment to pickleball mechanics. |
-| YouTube fixes | Found a stretch that seemed to help. Applied it inconsistently. Lost confidence in self-treatment. |
-| Lessons from coaches who don't play at a high level | Got generic advice that improved some things but never addressed the movement patterns causing physical breakdown. Coach couldn't see the connection between form and pain. |
-| Backing off intensity | Played less. The body cooperated. Dave resents this because the game is getting shorter, not better. |
+| Group clinics | Good general instruction. Not personalized. The drill that fixes everyone's forehand doesn't fix Dave's specific issue. Reverts within a week. |
+| YouTube videos | Great for conceptual understanding. Terrible for transfer to actual match play. Dave knows what a good reset looks like — they can't replicate it under pressure. |
+| Lessons from coaches who don't play at a high level | Got advice built on watching other beginners, not built on playing at 4.5-5.0. The coach couldn't see what a high-level player sees. |
+| Drilling without diagnosis | Practiced the wrong thing. Got better at the wrong version of a shot. The pattern got reinforced, not fixed. |
+| Generic physical therapy (tertiary avatar) | Exercises built for general rehab — not pickleball-specific movement demands. Felt better at rest. Broke down again at pace. |
+| Rest (tertiary avatar) | Works temporarily, returns when they go back to full play. Never addressed root cause. |
 
 ### What Dave Actually Wants
 
 | Surface-Level Ask | The Deep Want |
 |---|---|
-| "I want my knee to stop hurting." | I want to play 5 days a week without thinking about my body at all. |
-| "I want to get to the next level." | I want to feel like I'm still improving — not just managing decline. |
-| "I want someone who understands pickleball." | I want to feel seen by a professional. I want them to immediately get why this matters to me. |
+| "I want to break through to the next rating level." | I want proof that I'm still getting better — not plateauing. The rating is the scoreboard. I want the scoreboard to move. |
+| "I want to beat the players who keep beating me." | I want to stop feeling like I've hit my ceiling. I want to feel like I'm figuring it out. |
+| "I want someone who can actually watch my game." | I want someone who is specific enough about my situation that I know they're not giving me the same speech they give everyone. |
 | "I want to stay active." | I want this sport to be part of my life for the next 20 years. I'm not done. |
-| "I don't want to just be told to rest." | I want someone to take my goals seriously enough to find a solution that doesn't require stopping. |
+| "I don't want to just manage symptoms." (tertiary) | I want someone to take my goals seriously enough to find a solution that doesn't require stopping. |
 
 ### Dave's Trust Journey
 
-Dave doesn't trust strangers. They trust their pickleball community — their regular group, the players they see every week, coaches with obvious game. The path from stranger to trusted provider mirrors how trust is built on the court: you earn it by showing you understand the game.
+Dave doesn't trust strangers. They trust their pickleball community — their regular group, the players they see every week, coaches with obvious game. The path from stranger to trusted coach mirrors how trust is built on the court: you earn it by demonstrating you can actually play AND that you see things other coaches miss.
 
 | Stage | What Dave Is Deciding |
 |---|---|
-| Sees content on Instagram | "Does this person actually know pickleball? Or are they a generic sports doc who picked up a paddle once?" |
-| Watches a Reel | "They understand exactly what I'm dealing with. This is different." |
-| Reads the caption | "They have a specific answer — not just 'see a doctor' or 'rest more.' They know the mechanism." |
-| DMs or comments | "Is this person real? Will they actually respond and talk to me?" |
-| First DM exchange | "They're asking about my specific situation. They're not giving me a canned answer." |
-| Books a lesson or visit | "They play at 5.0. They've seen this before. I trust them to both adjust my body and watch my form." |
-| After first session | "That was the most specific, useful thing any professional has done for my pickleball. This is the person." |
+| Sees technique content on Instagram | "Does this person actually know the game at a high level? Are they just a clinic coach or do they actually play?" |
+| Watches a skill/technique Reel | "They're describing exactly what's happening in my game. They've seen this before. This is different from generic coaching advice." |
+| Reads the caption | "They're specific enough about what's breaking down that I believe they'd know what to do about it." |
+| DMs or comments | "Is this person real? Will they actually respond and help me?" |
+| First DM exchange | "They're asking about my specific game and situation — not just pitching packages." |
+| Books a first lesson | "They play at 5.0 and came from competitive tennis. They're going to see things nobody else has caught. Let's go." |
+| After first session | "They diagnosed something in the first 10 minutes that I've been fighting for a year. This is the person I've been looking for." |
 
 ### Hot Button Topics for Dave's Content
 
-Ranked by content opportunity for Lane's positioning.
+Ranked by content opportunity for Lane's positioning. Coaching and technique topics are now PRIMARY. Pain/injury topics are tertiary (10% max).
 
-| Topic | Why It's Hot + Lane's Angle |
-|---|---|
-| **Pickleball Elbow** | #1 complaint in the sport. Dave either has it, has had it, or knows someone who does. Most content gives generic tennis elbow advice. Lane connects it to grip pressure, swing mechanics, and the upstream shoulder chain — the pickleball-specific causes. |
-| **Knee Pain on the Court** | Explosive lateral movement puts enormous demand on knees. Dave is often told to strengthen quads generically. Lane can diagnose whether it's a movement pattern issue (fixable through coaching) or structural issue requiring treatment — often it's both. PRIMARY PRODUCT PILLAR. |
-| **Shoulder Pain / Overhead Issues** | The overhead, erne, and high volley demand shoulder stability most players never train for. Lane speaks to the specific positions and loads unique to pickleball that cause breakdown — especially T-spine mobility. |
-| **Movement Efficiency at the Kitchen** | Footwork and split-step mechanics are the difference between 3.5 and 4.5. Lane uniquely connects movement efficiency to injury prevention — you move wrong, you hurt. This is Lane's crossover topic. |
-| **Recovery for Older Players** | Players 50+ playing 4-5x per week need intentional recovery strategies. Most content on this is generic. Lane gives pickleball-specific recovery advice. |
-| **The "Playing Through Pain" Dilemma** | Dave is doing this. They know it might not be smart. They're looking for guidance on when it's okay vs. when it becomes a real problem. Lane can give them a framework without just saying "stop playing." |
-| **Third Shot Drop Mechanics** | The most analyzed shot in recreational pickleball. Dave is obsessed with it. Lane connects the body mechanics required (shoulder position, hip turn, weight transfer) to both performance and injury prevention. |
-| **Paddle and Grip Selection** | Dave has spent money on gear and isn't sure they picked right. Lane connects paddle weight, grip size, and swing weight to injury risk in a way no general sports doc can. |
+| Topic | Priority | Why It's Hot + Lane's Angle |
+|---|---|---|
+| **Third Shot Drop Mechanics** | ⭐ PRIMARY | The most obsessed-over shot in rec pickleball. Dave has tried to fix it for a year. Lane sees both the swing AND the body underneath it — often the fix is a weight transfer or hip position issue Dave never knew was the cause. |
+| **Reset Volley Technique** | ⭐ PRIMARY | "My reset keeps popping up" is one of the most common phrases in the sport. Specific, fixable, and Lane has watched it at 5.0. Content about reset mechanics performs because EVERY player has this problem. |
+| **Dinking Strategy and Patterns** | ⭐ PRIMARY | The kitchen game determines outcomes at every level 3.5+. Dave has a dinking game that breaks down under pressure. Lane can show the pattern-recognition side that most coaches miss. |
+| **Footwork and Split Step** | ⭐ PRIMARY | The difference between 3.5 and 4.5 is almost entirely footwork. Lane's angle: split step timing, ready position, first step direction. Also the crossover topic — move wrong, you hurt. |
+| **ATP/Erne Execution** | PRIMARY | High-reward shots Dave wants to add to their game. Lane can break down the approach mechanics in a way that makes execution accessible. |
+| **Topspin Forehand / Drive Mechanics** | PRIMARY | Big reach topic. Every player wants more controlled pace. Lane's tennis background gives him a specific lens on pickleball drive mechanics that most coaches lack. |
+| **Rating Plateau Diagnosis** | PRIMARY | "I've been stuck at 3.5 for a year" is Dave's core frustration. Content that directly addresses why rating plateaus happen — and names the fixable patterns — earns massive engagement from the primary avatar. |
+| **Movement Efficiency at the Kitchen** | PRIMARY | Footwork and split-step mechanics are the difference between 3.5 and 4.5. Lane uniquely connects movement efficiency to injury prevention — you move wrong, you hurt. |
+| **Recovery for Performance (not injury)** | SECONDARY | Playing 4-5x/week and recovering well enough to play well every session. Framed as performance and longevity — not injury management. |
+| **Strength and Training for Pickleball** | SECONDARY | What to do off the court to play better on it. Specific to pickleball movement demands — not generic gym advice. |
+| **Knee Pain on the Court** | BACKEND ONLY | Still exists in content at 10% max. Served by backend products (free guide, $97 course). Framed as "keep your knees healthy so you can keep playing" — not injury/rehab first. |
+| **Pickleball Elbow** | BACKEND ONLY | Real complaint. Backend content only. Lane connects it upstream to swing mechanics — coaches can't do this. Used sparingly. |
 
 ---
 
 ## 3. LANE'S VOICE & POSITIONING
 
-### Who Lane Is in This Space
+### Who Lane Is in This Space (Post-Pivot)
 
-Dr. Lane Odom is a Doctor of Chiropractic and a 5.0 DUPR competitive pickleball player. He goes by **Pickleball Chiro** — a name that tells the whole story in two words. It is not "The Pickleball DC" (requires explanation). It is not "@thepickleballchiropractor" (someone else already has that). It is Pickleball Chiro: the sport and the clinical credential in one phrase.
+Lane Odom is a **pickleball performance coach** who helps serious recreational players break through plateaus and perform at their best. The DC credential lives quietly in the background as a differentiator — not the headline. When people find out he's also a chiropractor, it's a bonus. It's not the entry point.
+
+He plays at 4.9 DUPR with a 10-year competitive tennis background. He came to pickleball with real game — not as a clinician who picked up a paddle. That foundation is what lets him see technique problems that coaches without that background miss. And the DC credential means he also sees what's happening in the body underneath the shot — something no pure technique coach can offer.
 
 Lane is not Tim. Lane is not a faceless AI persona. Lane is a real person on camera, on the court, showing his face and his game. His credibility is demonstrated in real time — by the footage, by the precision of what he says, by the shots he's making on court. His expertise is proven, not stated.
 
+### The New Tagline
+
+> "I help pickleball players break through plateaus and perform at their best."
+
+Outcome language only. No titles. No credentials as the lead. If someone asks what Lane does, this is the answer. The DC credential comes up organically — in coaching sessions, when relevant to a physical issue, when it adds weight. It is never the lead.
+
 ### The Brand Promise
 
-> I help serious recreational pickleball players bridge the gap between pain and performance — by looking at every problem through two lenses at once: what your body is doing, and what your game is doing.
+> I help serious recreational pickleball players break through the plateau and play their best — by running two diagnostics at once: what the game is doing, and what the body is doing underneath it.
 
 ### The Philosophy — In Lane's Own Words
 
@@ -305,15 +326,15 @@ This gives Lane a unique coaching lens for the large portion of Dave's who came 
 
 ### Lane vs. The Competition
 
-| Provider Type | High-level player? | Chiro/rehab? | Upstream diagnosis? | Tennis background? | Digital products? |
+| Provider Type | High-level player? | Coaching focus? | DC credential? | Tennis background? | Algorithm playbook? |
 |---|---|---|---|---|---|
-| Regular pickleball coach | Sometimes | No | No | Sometimes | Rarely |
-| Sports chiropractor | Rarely | Yes | Varies | Rarely | Rarely |
-| **Michael Oakson (@thepickleballchiropractor)** | Yes (5.0–5.5) | Yes (DC) | Partial | No | Yes (coaching focus) |
-| **Dr. Brien Lee (@thehealthypickleballer)** | Recreational | Yes (PT/DPT) | Limited | No | Podcast, no guides |
-| **Dr. Lane Odom — Pickleball Chiro** | **Yes (5.0)** | **Yes (DC)** | **Full chain** | **Yes (10 yrs)** | **Yes ($17 guide, more in queue)** |
+| Regular pickleball coach | Sometimes | Yes | No | Sometimes | Rarely |
+| Sports chiropractor/PT | Rarely | No | Yes | Rarely | Rarely |
+| **Michael Oakson (@thepickleballchiropractor)** | Yes (5.0–5.5) | Yes (primary) | Yes (DC) | No | Partial |
+| **Dr. Brien Lee (@thehealthypickleballer)** | Recreational | No (education-dump) | Yes (PT/DPT) | No | No |
+| **Dr. Lane Odom — Pickleball Chiro** | **Yes (5.0)** | **Yes (primary post-pivot)** | **Yes (DC — differentiator)** | **Yes (10 yrs)** | **Yes (full system)** |
 
-**The gap Lane owns:** No competitor is running the Tim-system playbook — belief violation hooks, snippet strategy, ManyChat automation, $17 digital products — for the pickleball injury/rehab niche. Brien Lee with 6K after 414 posts proves that education-dumping doesn't grow accounts even with an elite resume. Oakson at 24K is a coaching account using his DC credential as branding — he's not a clinical injury account with a digital product funnel. Lane's specific position — 5.0 DC with upstream chain diagnosis, tennis background, and a $17 entry product — is wide open.
+**The gap Lane owns (post-pivot):** Lane is now competing in the same coaching lane as Oakson — but with a meaningful differentiator Oakson doesn't have: the DC credential means Lane watches the body underneath the shot, not just the shot. A 3.5 player working with Oakson gets great technique coaching. A 3.5 player working with Lane gets technique coaching AND someone who can identify the physical pattern holding them back. That's the dual diagnostic — and it's genuinely unique. Additionally, Lane now owns a performance coaching account with a content-to-digital-products backend and ManyChat automation — an infrastructure Oakson hasn't built. Brien Lee has the credentials but not the algorithm game (6K after 414 posts). Lane has both.
 
 ---
 
@@ -379,20 +400,22 @@ When a non-follower lands on @dr.lane_o after seeing a Reel, they make a decisio
 | **Username** | @dr.lane_o (keep this) |
 | **Display name** | Lane Odom │ Pickleball Chiro |
 | **Profile photo** | Action shot on court — mid-play or holding paddle. Athletic, high-energy. NOT a clinic headshot. |
-| **Bio line 1** | 5.0 DUPR pickleball player. Doctor of Chiropractic. |
-| **Bio line 2** | Helping serious players stay on the court and play their best. |
-| **Bio line 3** | 📍 Volusia County, FL │ Lessons + Mobile Chiro |
-| **Bio CTA** | 👇 DM to book │ Comment KNEE for the knee guide |
-| **Link in bio** | Stan Store link (knee guide) or Linktree once multiple products are live |
-| **Highlight covers** | Simple circle graphics in Court Orange or Near Black: LESSONS / CHIRO / TIPS / COURT |
+| **Bio line 1** | 4.9 DUPR │ Pickleball Performance Coach |
+| **Bio line 2** | Helping serious players break through plateaus and perform their best. |
+| **Bio line 3** | 📍 New Smyrna Beach, FL │ Lessons + Packages |
+| **Bio CTA** | 👇 DM to book a lesson |
+| **Link in bio** | Bio link page (lessons primary, knee guide secondary/backend) |
+| **Highlight covers** | Simple circle graphics in Court Orange or Near Black: LESSONS / TIPS / COURT / COACHING |
+
+**Note on bio:** The DC credential is no longer in the bio headline. It lives in the content — when it comes up in technique explanations, it surfaces naturally. Leading with "Doctor of Chiropractic" repels the coaching audience and attracts only the injury/pain audience. The credential is the bonus, not the hook.
 
 ### Pinned Post Strategy (3 Posts)
 
-**Pin 1 — Proof of Level:** Best gameplay clip or highlight reel. This answers "does he actually play?" before anyone asks. Must be played at or near 5.0 level, clear and athletic. This pin does the credibility work so every other post doesn't have to.
+**Pin 1 — Proof of Level:** Best gameplay clip or highlight reel. This answers "does he actually play?" before anyone asks. Must be played at or near 5.0 level, clear and athletic. This pin does the credibility work so every other post doesn't have to. Topspin drill reel or a strong rally clip.
 
-**Pin 2 — Intro / Who You Are:** A 60-second intro Reel. Who Lane is, what makes him different, who he helps. The dual diagnostic framing belongs here. This answers "why should I follow this specific person" for every new visitor.
+**Pin 2 — Intro / Who You Are:** A 60-second intro Reel. Who Lane is, what makes him different, who he helps. Lead with coaching and the dual diagnostic framing: "I play at 5.0 and I also watch what the body is doing underneath the shot — most coaches only see one of those." This answers "why should I follow this specific person" for every new visitor.
 
-**Pin 3 — Social Proof or Problem Recognition:** Either a client win (testimonial, result, transformation) or a problem-recognition post that makes Dave say "yes, that is exactly my situation." If no testimonials yet — use the strongest problem-recognition Reel from the injury pillars.
+**Pin 3 — Social Proof or Technique Breakdown:** Either a student transformation (rating improvement, specific skill fix) or a strong technique breakdown that makes Dave say "that is exactly what I'm struggling with." Now that coaching is primary, technique breakdowns that generate comments and shares are ideal for Pin 3.
 
 ---
 
@@ -553,7 +576,7 @@ Speak to Dave's identity, not their symptom. Content that addresses who they are
 **Hook Type 6: Credential-by-Proof Hook**
 Never lead with credentials ("As a Doctor of Chiropractic..."). Demonstrate understanding so specific that the credential becomes obvious. The knowledge proves the expertise — the title doesn't.
 - Template: "I'm a [credential] and here's what I see [specific observation from real experience]."
-- "I'm a 5.0 DUPR chiropractor and the most common thing I see is players with great technique and broken bodies."
+- "I'm a 4.9 DUPR chiropractor and the most common thing I see is players with great technique and broken bodies."
 - "I've played 500+ hours of competitive pickleball and adjusted 100+ pickleball players. Here's what connects almost every injury to a movement pattern."
 - "I see both the court and the clinic. The thing coaches miss and doctors miss is the same thing."
 
@@ -561,17 +584,19 @@ Never lead with credentials ("As a Doctor of Chiropractic..."). Demonstrate unde
 
 These words stop Dave's thumb because they've been talking about these topics in their group chat this week.
 
-| Tier 1 — Lead with these | Tier 2 — Reinforce with these |
+| Tier 1 — Lead with these (coaching/technique PRIMARY) | Tier 2 — Reinforce with these |
 |---|---|
-| pickleball elbow | inflammation |
-| knee pain | recovery |
-| shoulder pain | footwork |
-| playing through pain | split step |
-| pickleball at 50/55/60 | movement mechanics |
-| injury prevention | overhead mechanics |
-| 4.0 / 4.5 player | court movement |
-| chiropractor for pickleball | warm-up |
-| third shot drop | rating plateau |
+| reset volley | kitchen game |
+| third shot drop | footwork |
+| 3.5 / 4.0 plateau | split step |
+| topspin forehand | dinking strategy |
+| rating plateau | erne / ATP |
+| pickleball lessons | court movement |
+| 5.0 player | ready position |
+| stuck at [rating] | pattern recognition |
+| pickleball at 50/55/60 | warm-up |
+| pickleball elbow (backend) | injury prevention (backend) |
+| knee pain (backend) | recovery (backend) |
 
 ### Hook Language to Avoid (Dave's Burn Cycle)
 
@@ -589,18 +614,25 @@ Dave has tried things that didn't work. His skepticism is finely tuned. These ph
 
 ### Proven Hook Templates for Lane's Niche
 
+**Coaching and technique (PRIMARY — use for 70-80% of hooks):**
+- "Your [shot] breaks down under pressure. Here's the part no coach addressed."
+- "Stuck at 3.5? It's probably not your [shot]."
+- "To the player who keeps losing to the same people and can't figure out why."
+- "Every coach taught you how to [X]. Nobody taught you [the underlying thing]."
+- "Your third shot drop is fine in warmup. Falls apart in a real point. Here's why."
+- "The reset everyone practices in drills. Nobody teaches what it looks like under pressure."
+- "I've coached [X] players this week. The same thing breaks everyone's [shot]."
+- "I play at 5.0. Here's what I watch in the first 10 minutes of every lesson."
+- "The difference between 3.5 and 4.0 isn't your shots. It's [this]."
+- "I came from 10 years of competitive tennis. Here's what transfers to pickleball — and what doesn't."
+
+**Pain and longevity (BACKEND — use for 10% of hooks):**
 - "Your [body part] pain has nothing to do with your [body part]."
 - "The [thing they're doing] is why it keeps coming back."
 - "To the player who [exact situation]."
-- "Every coach sees [X]. I see [X] and [Y]."
 - "Icing it. Resting it. It came back anyway."
 - "Your PT gave you the right exercises for the wrong problem."
 - "Playing [X] days a week. [Body part] keeps talking."
-- "3.5 technique. 4.5 body falling apart underneath it."
-- "The [shot] everyone says to fix. Nobody tells you [the body piece]."
-- "You don't need to stop playing. You need to stop [specific wrong thing]."
-- "Every chiropractor I've been to didn't know what a [shot type] was. Mine does."
-- "I've adjusted [X] pickleball players. The same thing connects almost every injury."
 
 ### Hook Writing Process — Do This Every Time
 
@@ -743,37 +775,45 @@ How many days a week are you currently playing?
 
 ## 8. CONTENT PILLARS & WEEKLY CALENDAR
 
+### The Content Split (Post-Pivot)
+
+**70% — Skill, Technique, and Coaching**
+**20% — Performance, Movement, and Training**
+**10% — Pain, Longevity, and Recovery**
+
+This is not approximate. It is the target ratio. Every week of content should land close to this split. If a week goes heavy on pain/injury content — pull it back the following week.
+
 ### The Four Content Pillars
 
-| Pillar | What It Covers | Why It Works |
-|---|---|---|
-| **PILLAR 1 — Pain & Injury** | Pickleball-specific injuries: elbow, knee, shoulder, wrist. Why they happen upstream. What to do (tease only). | Widest reach — every player has an injury or fears one. PRIMARY product funnel pillar (KNEE). |
-| **PILLAR 2 — Performance & Technique** | Third shot drop, movement at the kitchen, overhead mechanics, reset execution. Lane's angle: connect movement mechanics to body function. | Reaches the player who isn't injured but wants to improve. Crossover to lessons funnel. |
-| **PILLAR 3 — Recovery & Longevity** | Playing pickleball for 20 more years, not just this season. Recovery between sessions, what 50+ players need to do differently, mistakes that shorten playing careers. | Speaks to Dave's deepest fear: being forced off the court. Always ends with hope, not warning. |
-| **PILLAR 4 — Credibility & Story** | Lane's background, perspective, positioning. His level of play, clinical background, case examples, why the combination matters. | Answers "why trust this guy?" Used sparingly — 1 in 4 or 1 in 5 posts. Overdone: self-promotion. Done right: reinforces everything else. |
+| Pillar | Split | What It Covers | Why It Works |
+|---|---|---|---|
+| **PILLAR 1 — Skill and Technique** | 70% | Shot mechanics, pattern recognition, strategy, drills, common mistakes and fixes. Specific to pickleball: topspin forehand, reset volley, third shot drop patterns, dinking strategy, ATP setups, erne execution, footwork patterns, kitchen positioning. | PRIMARY growth driver. Every serious player wants to get better. This content earns shares — players send it to their partners. It reaches the broadest audience because EVERY player has a shot they're working on. |
+| **PILLAR 2 — Performance and Movement** | 20% | Training that makes you a better player: exercises for court movement, mobility for pickleball, strength for quick first step and explosive lateral movement, agility, reaction time, court movement efficiency. Always framed through on-court performance — NOT injury prevention. "Move faster at the kitchen" not "protect your knees." | Crossover content. Reaches fitness-conscious players and players who want to train smarter between sessions. Reinforces Lane's dual expertise — coaching AND body mechanics. |
+| **PILLAR 3 — Coaching Authority** | Within 70/20 | Playing content at 5.0 level. Behind the scenes of lessons. Student transformations and DUPR progression stories. Competitive play insights. "Here's what I see at the kitchen in every lesson this week." | Social proof engine. Positions Lane as the coach serious players seek out. Builds the "aspirational peer" identity — he plays at a level Dave wants to reach, AND he can help them get there. Woven into Pillars 1 and 2 rather than a standalone post type. |
+| **PILLAR 4 — Pain, Longevity, and Performance** | 10% max | When covered, frame entirely through performance and longevity — NOT injury and rehab. "How to keep your knees healthy so you can play more." Never "fix your knee pain." The DC credential adds authority here but never leads. Backend digital products are the CTA for this pillar only. | Serves tertiary avatar (pain patient). Keeps the free guide and $97 course alive organically. The DC credential surfaces here as a natural differentiator. One post per week maximum — often zero. |
 
-**The Tie-Back Rule:** Every topic Lane touches — diet, strength, sleep, paddle selection, court surface, tournament prep — is only ever a doorway back to the two core themes: playing better and staying on the court. Nothing stands alone as the point. The point is always: you have a specific problem that requires someone who understands both the sport and the body. That person is Lane.
+**The Tie-Back Rule:** Every topic Lane touches — strength, recovery, paddle selection, tournament prep — is only ever a doorway back to two outcomes: playing better and staying on the court. Nothing stands alone as the point. The point is always: you have a specific performance or physical pattern holding you back. Lane can see it. And nobody else you've worked with could.
 
 ### Pillar Rotation Rule
 
-Never post the same pillar back-to-back. Rotate. A typical week:
-- Mon: Pillar 1 (Pain/Injury)
-- Tue: Pillar 2 (Performance)
-- Wed: Pillar 3 (Recovery)
-- Thu: Pillar 1 (Pain/Injury — different topic)
-- Fri: Pillar 4 (Credibility) or Carousel
+Never post the same pillar back-to-back. Rotate. A typical week reflects the 70/20/10 split:
+- Mon: Pillar 1 (Skill/Technique — specific shot or drill)
+- Tue: Pillar 2 (Performance/Movement — training for court performance)
+- Wed: Pillar 1 (Skill/Technique — different topic, different shot)
+- Thu: Pillar 1 (Coaching Authority — playing content, lesson observation, student win)
+- Fri: Pillar 4 (Pain/Longevity — maximum once per week) OR another Pillar 1/2 if no pain content is due
 - Daily: Stories
 
-### Sample Weekly Content Plan
+### Sample Weekly Content Plan (Post-Pivot)
 
-| Day | Content | CTA Keyword |
-|---|---|---|
-| **Monday** | REEL — Pillar 1: "Your pickleball elbow has nothing to do with your elbow." | ELBOW |
-| **Tuesday** | REEL — Pillar 2: "Your third shot drop is inconsistent. Here's the part nobody addressed." | DROP |
-| **Wednesday** | CAROUSEL — Pillar 3: 5-slide on recovery mistakes for high-volume players. | RECOVERY |
-| **Thursday** | REEL — Pillar 1: Knee pain hook. Different angle. Short, punchy. | KNEE |
-| **Friday** | REEL or CAROUSEL — Pillar 4: "I'm a 5.0 DUPR chiropractor. Here's what I see connecting almost every injury to a movement pattern." | LESSONS |
-| **Daily Stories** | One per day: Poll Mon / Teaser Tue / Comment reshare Wed / Behind-the-court Thu / Client win Fri | — |
+| Day | Content | Mode | CTA Keyword |
+|---|---|---|---|
+| **Monday** | REEL — Pillar 1: "Your reset keeps popping up. Here's what nobody addressed." | Mode 1 (loop-opening) | READY |
+| **Tuesday** | REEL — Pillar 1: "Here's why your third shot works in warmup and falls apart under pressure — and the actual fix." | Mode 2 (teaching) | READY (organic) |
+| **Wednesday** | CAROUSEL — Pillar 1: 5-slide on third shot drop mechanics. Why it breaks down under pressure. | Mode 1 or 2 | READY |
+| **Thursday** | REEL — Coaching Authority: Playing footage + caption about what I watch for in every lesson. | Either | Follow / READY |
+| **Friday** | REEL — Pillar 2 (performance) OR Pillar 4 (pain — max 1x/week if needed). | Mode 1 | READY or FREE |
+| **Daily Stories** | One per day: Poll Mon / Teaching tease Tue / Comment reshare Wed / Behind-the-court Thu / Student win Fri | — | — |
 
 ### Content Cadence Rules
 
@@ -782,74 +822,90 @@ Never post the same pillar back-to-back. Rotate. A typical week:
 - **Stories daily** — presence and relationship
 - **Total: 5–6 posts per week** in current phase
 - Done is better than perfect — only applies when the hook is good. Bad hook perfectly produced is still dead.
+- **Pain/injury content maximum: 1 post per week.** If none is needed that week, skip it. The backend products convert when Dave finds them organically.
 
 ---
 
 ## 9. THE FULL FUNNEL MAP
 
+### Primary Funnel — Coaching/Lessons
+
 ```
-AWARENESS LAYER (Reels — discovery)
+AWARENESS LAYER (Reels — skill/technique/coaching content)
 ↓
-Instagram Reel → Stops Dave's scroll
+Instagram Reel → Stops Dave's scroll with a specific technique or plateau observation
 ↓
-Caption → Makes him feel understood and incomplete
+Caption → Makes him feel understood and curious about what he's missing
 ↓
-"Comment KNEE" or "DM KNEE" → Triggers ManyChat
+"DM me to work together" or "Comment READY" → Triggers ManyChat or direct DM
 ↓
 
 PROFILE TRUST GAUNTLET (new visitors only)
 ↓
-Bio → confirms right account, Pickleball Chiro framing
-Pin 1 → gameplay footage (credibility — he actually plays)
-Pin 2 → intro Reel (who Lane is, what he does, dual diagnostic)
-Pin 3 → problem recognition or social proof (Dave feels seen)
+Bio → "4.9 DUPR │ Pickleball Performance Coach" — confirms right account
+Pin 1 → gameplay footage (credibility — he actually plays at 5.0)
+Pin 2 → intro Reel (who Lane is, dual diagnostic, who he helps)
+Pin 3 → student transformation or technique breakdown with strong engagement
 ↓
 
-MANYCHAT DM SEQUENCE
+BOOKING CONVERSATION (DM)
 ↓
-Trigger: Comment or DM the keyword (KNEE, ELBOW, LESSONS, etc.)
-Message 1: Opening DM — validates Dave's pain, confirms the guide exists, sends link
-Message 2: Link drop — short, warm, out of the way fast
-Message 3: Follow-up for non-openers (reactivation copy)
+Lane asks about their specific game and situation
+Not a pitch — a diagnostic conversation
+What are they working on? What keeps breaking down? What have they tried?
 ↓
-
-DIGITAL PRODUCT (KNEE guide — PRIMARY)
+Recommend first lesson or package based on conversation
 ↓
-$17 Pickleball Knee Pain Guide → delivered via Stan Store
-Page 1: Understanding the problem (validates the guide purchase)
-Page 2: The protocol (delivers the fix — what free content never gives)
-Upsell language toward lessons or mobile chiro on final page
+First lesson → runs the dual diagnostic on the court
+→ identifies what nobody else caught
+→ Dave books the next session
 ↓
 
-STAN STORE PAGE
+LESSON PACKAGES (target: 4-5 recurring weekly clients)
 ↓
-Price revealed here (never in DMs or captions)
-Outcome-first framing
-Testimonials (ethically sourced)
-Visible guarantee
-Clickable purchase button
-↓
-$17 SALE → conversation opens naturally toward services
-↓
+Solo: $80/hour | Couples: $70/person/hour
+5% max discount on packages — framed as value, never as discount
+Goal: $800-1000/week from lessons alone
+```
 
-HIGH-TICKET PIPELINE
+### Backend Funnel — Digital Products (Pain/Injury)
+
+```
+AWARENESS LAYER (pain/longevity content — 10% of posts)
 ↓
-Lesson client → "DM me, I'm taking clients in [area]"
-Mobile chiro client → "DM me, I do mobile visits in [radius]"
-Combined session → Performance Package (lesson + adjustment)
+Framed as performance and longevity, not injury and rehab
+↓
+"Comment FREE" → ManyChat → Free Knee Pain Guide (Kit)
+"Comment KNEE" → ManyChat → $97 Knee Pain Course (Gumroad)
+↓
+These funnels stay live and convert organically
+They are NOT actively promoted — they are backend captures
+```
+
+### Backend Funnel — Mobile Chiropractic (Premium Only)
+
+```
+Organic inquiry from existing clients or warm referrals only
+Never promoted in content
+$3000+ package minimum when offered
+→ by referral, direct DM, or organically during coaching relationships
 ```
 
 ### ManyChat Principles
 
-- **Never reveal the price in DMs** — Dave sees the price for the first time on Stan Store
+- **LESSONS keyword:** Routes to booking conversation. Lane responds directly.
+- **FREE keyword:** Routes to free knee guide (Kit). Automated sequence.
+- **KNEE keyword:** Routes to $97 knee course (Gumroad). Automated sequence.
+- **Never reveal price in DMs** — Dave sees the price for the first time on the product page
 - **Never give tips or protocols in DMs** — that kills the guide's job before he opens it
-- DM copy delivers validation and sends the link. Nothing more.
-- Each guide/service has its own keyword — see Section 16
-- Separate keyword for ad traffic when ads go live (e.g., KNEEAD) — enables independent tracking of ad vs. organic performance
+- DM copy for KNEE/FREE delivers validation and sends the link. Nothing more.
+- Separate keyword for ad traffic when ads go live (e.g., KNEEAD) — enables independent tracking
 
-### Cross-Sell Logic
+### Cross-Sell Logic (Post-Pivot)
 
-Knee → Elbow → Shoulder → Recovery → Performance is the natural buyer journey. The same Dave who bought the Knee Guide will buy the Elbow Guide because Lane has already earned his trust. Warm guide buyers are high-priority targets for lesson and chiro booking conversations — they already know Lane delivers.
+**Coaching client → backend products:** A lesson client who mentions knee or elbow issues gets a warm mention of the guide or course. They're already a warm buyer. The product feels like a natural next step, not a pitch.
+
+**Digital product buyer → lessons:** Someone who bought the knee course already trusts Lane. The upsell language at the end of the course points toward lessons for players who want to work on both their game and their body.
 
 ---
 
@@ -960,7 +1016,7 @@ Dave is an early-morning player. He's up at 6, on the court by 7:30, done by mid
 |---|---|---|
 | **Non-follower reach %** | % of Reel views from people who don't follow you. The health metric for growth. | 50%+ on strong reels |
 | **Watch time / completion rate** | Did they watch the full Reel? Partial watches = weak hook or weak content. | 50%+ completion |
-| **Comment KNEE triggers** | How many ManyChat sequences fired. This is your conversion metric. | Track weekly |
+| **Comment READY triggers** | How many ManyChat sequences fired. This is your conversion metric. | Track weekly |
 | **DM volume** | Total DMs from content — a leading indicator of booking intent. | Track weekly |
 | **Guide sales ($17)** | Revenue from Stan Store knee guide. The monetization metric. | Track weekly |
 | **Profile visits per Reel** | How many people went to your profile after watching. Strong hook = high profile visit rate. | Track per post |
@@ -978,7 +1034,7 @@ Dave is an early-morning player. He's up at 6, on the court by 7:30, done by mid
 Every Monday: pull the previous week's metrics. Identify the top-performing Reel by reach and completion rate. Ask:
 - What was the hook? Can it be replicated in a different pillar?
 - What pillar performed best this week?
-- How many KNEE triggers fired? Are they converting to sales?
+- How many READY triggers fired? Are they converting to bookings?
 - What did the best comment say? (This is free hook research — mine it.)
 
 ---
@@ -989,27 +1045,25 @@ Every Monday: pull the previous week's metrics. Identify the top-performing Reel
 
 Use these — they're from Dave's own vocabulary, mined from r/Pickleball and pickleball community forums:
 
-**On injury:**
-- "pickleball elbow" / "pickleball knee"
-- "my [body part] has been bothering me for months"
-- "I can play through it but I know something's not right"
-- "it only hurts on [specific shot]"
-- "I took a week off and it came right back"
-- "I've tried everything"
-- "my PT didn't understand pickleball"
-
-**On performance:**
+**On plateau and performance (PRIMARY — use these most):**
 - "my reset keeps popping up"
 - "my third shot is inconsistent"
 - "I'm losing to players I should be beating"
 - "I plateau at [rating] and can't break through"
+- "I've been stuck at 3.5 for a year and I can't figure out why"
 - "I want to move better at the kitchen"
+- "my dinking breaks down when they start speeding up"
+- "I know what I'm supposed to do — I can't get my body to do it under pressure"
 - "I want to add pace without losing placement"
+- "I've taken a few lessons and it helps for a session then I revert"
+- "I need someone who can actually watch my specific game"
 
-**On finding help:**
-- "I need a chiropractor who actually plays pickleball"
-- "my doctor doesn't understand why I can't just stop"
-- "I don't need to be told to rest. I need it fixed."
+**On injury (TERTIARY — backend products handle these):**
+- "pickleball elbow" / "pickleball knee"
+- "my [body part] has been bothering me for months"
+- "I can play through it but I know something's not right"
+- "I took a week off and it came right back"
+- "my PT didn't understand pickleball"
 
 ### Words and Phrases to Avoid
 
@@ -1029,75 +1083,103 @@ Use these — they're from Dave's own vocabulary, mined from r/Pickleball and pi
 
 ## 15. RED LINES — WHAT LANE NEVER DOES
 
-- **Never tells Dave to "just rest" as a final answer** — always paired with a path back to play
-- **Never makes Dave feel stupid for playing through pain** — "the sport matters, let's figure out a smarter way to manage it"
-- **Never positions as anti-medicine or anti-PT** — Lane is additive, not an alternative
-- **Never uses generic sports rehab language** that doesn't connect back to pickleball specifically
-- **Never leads with credentials** ("As a Doctor of Chiropractic...") — demonstrates the expertise instead
-- **Never completes the loop in free content** — every mechanism explanation lives in the guide or session
-- **Never posts running content, gym content for non-pickleball purposes, or other sport content** — that chapter is archived
-- **Never puts pricing in captions, DMs, or Reels** — price lives on the Stan Store page only
-- **Never posts without a hook in the first second** — nobody owes Lane their attention
-- **Never coaches someone in a way that ignores their physical reality** — form fixes must be body-informed
-- **Never makes the content about his credentials** — makes it about their problem
-- **Never uses anti-medication framing** — not the brand
-- **Never uses hyphens in captions** — commas and colons only
-- **Never opens a caption with "you"** as the first word
+- **Never leads with credentials** ("As a Doctor of Chiropractic..." or "As a DC...") — demonstrates the expertise instead. The credential surfaces naturally, never as the headline.
+- **Never promotes chiropractic in public content** — the mobile chiro offer is never a CTA in reels, carousels, or captions. It surfaces in private conversations only.
+- **Never makes content primarily about injury or pain** — that is 10% of the content mix. Pain/injury content does not anchor the brand.
+- **Never completes the loop in Mode 1 (engagement/conversion) content** — mechanism, root cause, and specific fix live in the session. Name the gap, never explain it. *Exception: Mode 2 (teaching/value) content CAN give real technique tips. The gap for Mode 2 is "knowing this vs. executing it in a real point" — that's what the session solves.*
+- **Never posts generic technique advice** that could come from anyone — every tip must be specific enough that a 3.5 player watching says "that is exactly what I'm dealing with."
+- **Never leads with "This will help your game"** — that's for everyone, which means it's for no one. Lead with the specific person and specific problem.
+- **Never coaches someone in a way that ignores their physical reality** — form fixes must be body-informed. This is the dual diagnostic.
+- **Never posts running content, gym content for non-pickleball purposes, or other sport content** — that chapter is archived.
+- **Never puts pricing in captions, DMs, or Reels** — price lives on the Stan Store/Gumroad page only.
+- **Never posts without a hook in the first second** — nobody owes Lane their attention.
+- **Never makes content about Lane's credentials** — makes it about their problem and their game.
+- **Never tells Dave to "just rest" as a final answer** — always paired with a path back to play.
+- **Never uses hyphens in captions** — commas and colons only.
+- **Never opens a caption with "you"** as the first word.
 
 ---
 
 ## 16. PRODUCT SUITE & MANYCHAT KEYWORDS
 
-**Primary sales platform:** Stan Store ✅ ACTIVE
-**ManyChat automation:** LIVE for KNEE keyword
+### Offer Hierarchy (Post-Pivot)
 
-| Product | Type | Status | Price | Primary Keyword | Hook Direction |
+**TIER 1 — PRIMARY (actively promoted in all content):**
+Pickleball lessons and coaching. In-person, packages, group. This is what content drives toward.
+
+**TIER 2 — SECONDARY (organically mentioned in coaching relationships):**
+Performance and movement training. Drills, programming, skill development. Future digital products in this category.
+
+**TIER 3 — BACKEND (exists, converts, not actively promoted):**
+Digital products: free knee guide + $97 knee course. Serve the tertiary (pain) avatar who finds Lane through technique content. Backend funnels stay live.
+
+**TIER 4 — PREMIUM BACKEND (never promoted):**
+Mobile chiropractic. By referral or organic inquiry only. $3000+ package minimum.
+
+### Full Product Suite
+
+| Product | Type | Status | Price | Keyword | Content Tier |
 |---|---|---|---|---|---|
-| Pickleball Knee Pain Guide | Paid guide | ✅ LIVE | $17 | **KNEE** | "Your knee isn't the problem. Your movement is." |
-| Pickleball Knee Pain Checklist | Free lead magnet | ✅ LIVE | Free | **FREE** | "Comment FREE and I'll send you the checklist I use with every pickleball player dealing with knee pain — see exactly what you might be missing." |
-| Pickleball Elbow Guide | Paid guide | 🔜 Next | $17 | **ELBOW** | "Your elbow has nothing to do with your elbow." |
-| Shoulder Rehab Guide | Paid guide | 🔜 Planned | $17 | **SHOULDER** | "The overhead isn't killing your shoulder. Your T-spine is." |
-| Recovery Protocol Guide | Paid guide | 🔜 Planned | $17 | **RECOVERY** | "The recovery protocol built for players who play 5x a week." |
-| Warmup Protocol | Quick-win | 🔜 Planned | $17 | **WARMUP** | "The warmup you're doing before playing was built for a different sport." |
-| Performance Plateau Guide | Paid guide | 🔜 Planned | $17 | **PLATEAU** | "Stuck at the same rating for a year? It's probably not your technique." |
-| Private Lessons | Service | ✅ LIVE | $75/$100/hr | **LESSONS** | "5.0 DUPR. Doctor of Chiropractic. Running both diagnostics at once." |
-| Mobile Chiropractic | Service | ✅ LIVE | $150/$195 | **CHIRO** | "I come to you. No waiting room. Built specifically for pickleball players." |
-| Knee Pain Digital Course | Course | 🎬 In Development — not yet available | TBD | TBD | In-depth video course — filming and launch are months away. Do not position as available in any content. Stan Store will host it when ready. |
+| Private Lessons (solo) | Service | ✅ LIVE | $80/hr | **LESSONS** | PRIMARY |
+| Private Lessons (couples/pair) | Service | ✅ LIVE | $70/person/hr | **LESSONS** | PRIMARY |
+| Lesson Packages | Service | ✅ LIVE | 5% max discount | **LESSONS** | PRIMARY |
+| Pickleball Knee Pain Guide | Free lead magnet | ✅ LIVE | Free | **FREE** | BACKEND |
+| Pickleball Knee Pain Course | Course | ✅ LIVE | $97 | **KNEE** | BACKEND |
+| Mobile Chiropractic | Service | ✅ LIVE | $3000+ pkg | **CHIRO** | PREMIUM BACKEND — never promoted |
+| Drills/Programming Guide | Digital | 🔜 Next | TBD | **DRILLS** | SECONDARY — builds coaching funnel |
+| Performance Plateau Guide | Digital | 🔜 Planned | TBD | **PLATEAU** | SECONDARY |
+| Pickleball Elbow Guide | Digital | 🔜 Planned | TBD | **ELBOW** | BACKEND |
 
-### FREE vs. KNEE — Keyword Routing Rule
+### ManyChat Keyword Routing Rules
 
-**This distinction is critical and must be applied consistently across all content.**
+| Keyword | What it delivers | When to use in content | Status |
+|---|---|---|---|
+| **READY** | Routes to booking conversation — "ready to book a session" | On ALL coaching, technique, and teaching content. PRIMARY CTA. | 🔜 Setting up |
+| **FREE** | Free Knee Pain Guide (Kit) — automated sequence | On pain/longevity content only (10% of posts, backend) | ✅ Live |
+| **KNEE** | $97 Knee Pain Course (Gumroad) — automated sequence | On pain/injury content that is solution-oriented (backend) | ✅ Live |
+| **CHIRO** | Routes to holding message / DM — premium inquiry | Essentially never actively promoted | ✅ Live |
+| **LESSONS** | (Previous primary — keeping live during transition) | Being phased out in favor of READY | ✅ Live |
+| **DRILLS** | Routes to drill resource or booking conversation | (Future use when drill product launches) | 🔜 Future |
+
+**The rule:** READY on 90% of content. FREE and KNEE on pain/longevity content only (10% of posts, backend). CHIRO is not a content CTA. Write all new content toward READY even while ManyChat setup is in progress.
+
+### FREE vs. KNEE — Keyword Routing Rule (Backend Only)
 
 | Keyword | What it delivers | Positioning | When to use |
 |---|---|---|---|
-| **FREE** | Pickleball Knee Pain Checklist (free) | A screening/gut check — it shows Dave which pieces of his knee health he's missing. NEVER positioned as a fix. Language: "see where you stand," "find out what you're missing." | Awareness-stage content — educational, broad reach, top-of-funnel |
-| **KNEE** | "Fix Your Pickleball Knee Pain" guide ($17) — the full 3-stage system: Reduce Irritation → Build Strength → Return to Play | The actual solution product. Language: "the 3-stage system," "what to actually do about it," "the fix." | Solution-stage content — mechanism-hinting, deeper, closer to the decision |
+| **FREE** | Pickleball Knee Pain Guide (free) | A diagnostic tool — shows Dave what's driving the issue. Never positioned as the full fix. Language: "see where you stand," "find out what you're missing." | Awareness-stage pain/longevity content — top-of-funnel for the tertiary avatar |
+| **KNEE** | Pickleball Knee Pain Course ($97) | The complete system. "The full protocol," "what to actually do about it." | Solution-stage pain/injury content — when the content is clearly fix-oriented |
 
-**Funnel logic:** FREE gets Dave in the door. KNEE converts him. Default to FREE for awareness content. Use KNEE when the content is clearly solution-oriented.
+**Funnel logic:** FREE → guide → $97 course. This funnel still converts. Keep it live. Just don't drive all content toward it.
 
-### ManyChat DM Sequence — KNEE (Primary, Live)
+### ManyChat DM Sequence — LESSONS (Primary)
 
-**Comment trigger:** Anyone who comments "KNEE" (or variations: knee, knee pain, knee hurts)
+**Comment trigger:** Anyone who comments "LESSONS" or DMs about coaching
 
 **Opening DM (Message 1):**
-> "Hey! Got your comment — you're in the right place. I put together a guide specifically for pickleball players dealing with knee pain. It covers what's actually driving the issue for most players (hint: it's almost never the knee itself) and what to actually do about it. Want me to send you the link?"
+> "Hey — thanks for reaching out. Tell me a little about your game. What are you working on and what keeps breaking down?"
+
+**Follow-up:** Lane responds personally. This is a conversation, not an automation beyond the first trigger.
+
+### ManyChat DM Sequence — KNEE (Backend, Live)
+
+**Comment trigger:** Anyone who comments "KNEE" (or variations)
+
+**Opening DM (Message 1):**
+> "Hey! Got your comment — you're in the right place. I put together a course specifically for pickleball players dealing with knee pain. It covers what's actually driving the issue for most players (hint: it's almost never the knee itself) and what to actually do about it. Want me to send you the link?"
 
 **Link DM (Message 2 — after they respond yes):**
-> "Here it is: [Stan Store link]. It's $17 and it's built specifically for pickleball — not generic knee rehab. Let me know if you have any questions."
+> "Here it is: [Gumroad link]. It's $97 and built specifically for pickleball — not generic knee rehab. Let me know if you have questions."
 
 **Follow-up DM (Message 3 — for non-openers, 24–48 hrs later):**
-> "Just checking in — did you get a chance to look at the guide? Happy to answer any questions about whether it's the right fit for your situation."
-
-**Rules:**
-- Never reveal price in Message 1 — Dave sees the price on the Stan Store page
-- Never give tips or protocol details in DMs — that kills the guide's job
-- Rotate opener phrasing across multiple variations to improve primary inbox delivery
-- Non-live keywords (ELBOW, SHOULDER, etc.) route to a holding message: "Working on something for this right now — follow along and I'll let you know when it's ready."
+> "Just checking in — did you get a chance to look at the course? Happy to answer any questions about whether it's the right fit for your situation."
 
 ### Recommended Build Order for Remaining Products
 
-1. **ELBOW guide** — second highest complaint volume in pickleball, natural companion to KNEE, fastest to build because the clinical knowledge is already there
-2. **RECOVERY guide** — opens the longevity/Pillar 3 funnel to a digital product; high share potential
+1. **DRILLS / Programming guide** — serves the primary coaching audience, feeds the lesson funnel
+2. **PLATEAU guide** — directly addresses primary avatar's core frustration, high search volume
+3. **ELBOW guide** — second highest complaint volume in pickleball, natural companion to KNEE
+4. **RECOVERY guide** — opens the longevity content to a digital product; high share potential
 3. **WARMUP protocol** — fastest to build ($17 PDF), massive share potential ("send this to your group"), positions Lane as the authority before people are injured
 4. **SHOULDER guide** — round out the injury trifecta
 5. **PLATEAU guide** — opens the performance/Pillar 2 funnel to a digital product; feeds lesson pipeline
@@ -1504,63 +1586,47 @@ Casual text on solid background. Court Orange, Near Black, or Off White. No comp
 
 ## 19. SERVICES OVERVIEW & PRICING
 
-### Service 1 — Private Pickleball Lessons
+### Service 1 — Private Pickleball Lessons (PRIMARY SERVICE)
 
-1-on-1 coaching from a 5.0 DUPR competitive player
+1-on-1 coaching from a 4.9 DUPR competitive player with 10 years of competitive tennis
 
 | Pricing | What's Included |
 |---|---|
-| **$75 / hour (solo)** | Full court session with focused skill work |
-| **$100 / hour (2+ players)** | Technique breakdown: dinking, third shot, reset, ATP, erne |
-| | Strategy and pattern play based on current level |
-| | Video review available on request |
-| | Honest assessment of what's limiting the game |
-| | Optional: movement screening to flag injury risk patterns |
+| **$80 / hour (solo)** | Full court session with focused skill work |
+| **$70 / person / hour (couples/pair)** | Dual diagnosis: technique AND body mechanics underneath the shot |
+| **Packages (5% max discount)** | Framed as value — never as a discount |
+| | Shot mechanics: dinking, third shot drop, reset, topspin forehand, ATP, erne |
+| | Pattern recognition and strategy for current level |
+| | The dual diagnostic: what the game is doing AND what the body is doing underneath it |
+| | Specific, personalized — not the same advice Lane gives everyone |
 
+**Goal:** 4-5 recurring weekly clients. $800-1000/week from lessons alone.
 **Booking:** DM @dr.lane_o or ManyChat keyword LESSONS
-**Location:** Courts in Volusia County — Pictona, Earl Brown Park, or court of client's choosing
+**Location:** Courts in New Smyrna Beach / Volusia County — Pictona, Earl Brown Park, or court of client's choosing. Tallahassee area in 4-5 months (Killearn Estates, Bradfordville, SouthWood, northeast Tallahassee).
 
-**Note:** Packages coming. First session may include a free movement screen for new clients. The lessons funnel begins on Instagram, not via a booking system — keep it conversational in Phase 1.
+**Positioning note:** Lead with the dual diagnostic in all booking conversations. "I watch what the game is doing AND what the body is doing underneath it. Most coaches only see one of those." The DC credential comes up here naturally — not as the headline, as the differentiator.
 
-### Service 2 — Mobile Chiropractic
+### Service 2 — Mobile Chiropractic (PREMIUM BACKEND — never actively promoted)
 
-Comes to the client. No waiting rooms, no insurance drama.
+Premium only. By referral or organic inquiry. Not in content CTAs.
 
 | Pricing | What's Included |
 |---|---|
-| **$150 / 60-min Intro Visit** | Full intake, movement assessment, and history |
-| **$195 / 90-min Performance Visit** | Chiropractic adjustments targeting sport-specific movement patterns |
-| | Soft tissue work and myofascial release |
-| | Corrective exercise recommendations tailored to pickleball |
-| | Focus on staying on the court, not just managing pain |
+| **$3000+ package** | Premium performance package — full movement assessment, chiropractic care, corrective programming |
+| | Cash-pay only. No insurance. |
+| | Pickleball-specific assessment — built around the player's specific game, not generic rehab |
 
-**Important:** Cash-pay only. Insurance not billed for mobile visits. Serving outside 10-mile radius of Ormond Beach (non-compete agreement with Insight Chiropractic). Pricing reflects in-home convenience and focused performance care.
-
-**Booking:** DM @dr.lane_o or ManyChat keyword CHIRO
+**Important:** This service is NEVER promoted in content. It surfaces through existing coaching relationships or referrals. No CTA in posts, no ManyChat keyword active. If someone asks via DM, Lane handles it personally.
 
 ### Service 3 — In-Clinic Chiropractic
 
-Insight Chiropractic — Ormond Beach, FL — Insurance accepted
-
-| Pricing | What's Included |
-|---|---|
-| **Insurance-based** | Traditional clinic setting at Insight Chiropractic |
-| **Cash options available** | Chiropractic adjustments and manual therapy |
-| | Same pickleball-informed clinical eye |
-
-**Booking:** Contact Insight Chiropractic directly. This service is separate from mobile visits.
-
-### The Performance Package — Combo Offer
-
-Combined lesson + mobile chiro adjustment session. For clients who want both coaching and chiropractic care in one appointment. Ideal for players who want to work on movement patterns on the court and address what's holding them back physically simultaneously.
-
-**Custom pricing for combined sessions. Contact via DM.**
+Insight Chiropractic — Ormond Beach, FL — Insurance accepted. Standard clinic model, separate from coaching business. Not actively promoted in content.
 
 ### Services Funnel Logic
 
-Instagram content → ManyChat keyword → DM conversation → Lane understands their specific situation → Recommend the right service → Book
+Instagram skill/technique content → DM conversation (LESSONS keyword or organic DM) → Lane asks about their specific game → First lesson booked → Dual diagnostic on court → Client books next session → Recurring weekly relationship → Backend products and mobile chiro surface organically when relevant.
 
-Every service conversation starts with Lane asking about their specific situation. Never push a service before understanding what the person actually needs. The consultation IS the sales conversation.
+Every service conversation starts with Lane asking about their specific situation. Never push a package before the first session. The diagnostic conversation IS the sales conversation.
 
 ---
 
@@ -1570,12 +1636,11 @@ Every service conversation starts with Lane asking about their specific situatio
 
 **Michael Oakson — @thepickleballchiropractor**
 - 24K followers, 226 posts
-- Bio leads with "pickleball coach & content creator" — he's a coaching account using his DC credential as branding
+- Bio leads with "pickleball coach & content creator" — coaching account using DC credential as branding
 - Plays at 5.0–5.5, recently graduated from chiro school, pushing into semi-pro
-- Content: technique tips, coaching focus, general instruction — NOT clinical injury content with a product funnel
-- CTA: DM "COACH" to work with him — coaching business model, not digital products
-- Products: available on Payhip — coaching-focused, not injury/rehab focused
-- **What this means for Lane:** Oakson owns the coaching lane. Lane owns the clinical-meets-court lane. They are less similar than the handle suggests. Oakson doesn't have a $17 digital product funnel or ManyChat automation. He's building a coaching practice. Lane is building a content-to-digital-product business with a services backend. The gap between them is enormous. Don't try to be Oakson. Be what Oakson can't be.
+- Content: technique tips, coaching focus, general instruction
+- CTA: DM "COACH" to work with him — coaching business model
+- **What this means for Lane (post-pivot):** Lane is now competing more directly in Oakson's lane. The key differentiator Lane has that Oakson doesn't: Lane explicitly connects technique to body mechanics in the same session. Oakson coaches the shot. Lane coaches the shot AND watches what the body is doing underneath it. That's a real, communicable distinction. Additionally, Oakson doesn't have a digital product funnel or ManyChat automation infrastructure. Lane does. Don't copy Oakson. Out-position him on the dual diagnostic and out-execute him on the content system.
 
 **Dr. Brien Lee — @thehealthypickleballer**
 - 6,224 followers, 414 posts — weak return on volume

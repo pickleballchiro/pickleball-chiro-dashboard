@@ -1,11 +1,10 @@
-name: Deploy Dashboard to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
-      - 'IG Bio Link/**'
-      - 'dashboard/**'
+      - 'Insight Chiropractic/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -34,7 +33,7 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './IG Bio Link'
+          path: './Insight Chiropractic'
 
       - name: Deploy to GitHub Pages
         id: deployment
