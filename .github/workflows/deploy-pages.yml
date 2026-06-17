@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - 'Insight Chiropractic/**'
-      - 'PickleballChiro Quiz/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -28,20 +27,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Build site
-        run: |
-          mkdir _site
-          cp -r "Insight Chiropractic/." _site/
-          mkdir _site/quiz
-          cp -r "PickleballChiro Quiz/." _site/quiz/
-
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './_site'
+          path: './Insight Chiropractic'
 
       - name: Deploy to GitHub Pages
         id: deployment
