@@ -73,14 +73,32 @@ RT miles and deduction ($0.725/mi) are computed by the webhook — never send th
 
 ### Lead fields
 Date Added · Name · Phone · Email · Lead Source (`Pictona` / `Instagram` / `Earl Brown` /
-`Referral` / `Direct DM` / `NSB (Pettis/Glencoe)` / `Other`) · Service Interest · Status
-(default `New`) · Follow-Up · Notes
+`Referral` / `Direct DM` / `NSB (Pettis/Glencoe)` / `Cresswind` / `Other`) · Service
+Interest (`Mobile Chiro` / `In-Clinic Chiro` / `Pickleball Lessons` /
+`Mobile Chiro / In-Clinic Chiro` / `Mobile Chiro / Pickleball Lessons` / `Digital Product`) ·
+Status (`New` / `Contacted` / `Nurturing` / `Booked` / `Converted` / `Lost` / `Not a Fit`;
+default `New`) · Follow-Up · Notes
 
 ### Client update fields
 Match by name. Update: Last Session, Sessions/Mo., Total Sessions, package Used/Left,
 Total Paid (must include ALL payments), Outstanding, Notes.
 When a client pays, ALSO log the income row — the Dashboard revenue KPI reads the Income
 tab, but the per-client Total Paid still needs the client update.
+
+**Package Type** (Clients tab, when setting one) — use exactly one of:
+`Mobile Chiro Package` · `Lesson Package - Individual` · `Lesson Package - Group` ·
+`Single Lesson` · `Mobile Chiro (ongoing)` · `In-Clinic Chiro` · `None`. This is what
+distinguishes a chiro package from a lesson package — keep it accurate.
+
+### Dropdown vocabulary (cleaned July 2026 — stay on-list)
+All dropdown columns now reject-free-but-warn on off-list values. Use these exact strings so
+nothing shows an "invalid" flag and the sheet stays consistent:
+- **Payment Method** (income + expenses + clients): `Stripe` · `Venmo` · `Zelle` · `Cash` ·
+  `Card` · `Personal Checking` · `N/A` · `Unknown`
+- **Client Status**: `Active` · `Inactive`  (the Stage column auto-computes; don't set it)
+- **Tax Deductible** (expenses): `Yes` · `No`
+- Do NOT reintroduce merged duplicates: it's `Mobile Chiro` (not "Mobile Chiropractic"),
+  `In-Clinic Chiro` (not "Clinic Chiropractic"), `Pickleball Lessons` (plural).
 
 ## Step 3 — Write via the webhook
 
