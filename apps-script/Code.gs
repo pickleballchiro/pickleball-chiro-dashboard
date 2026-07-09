@@ -95,6 +95,9 @@ function doPost(e) {
       case "read_cells":             result = readCells(data);           break;
       case "setup_hq":               result = setupHq();                 break;
       case "archive_old_sheets":     result = archiveOldSheets();        break;
+      case "theme_tabs":             result = themeTabs();               break;
+      case "sort_tabs":              result = sortTabsChrono();          break;
+      case "fix_dropdowns":          result = fixDropdowns();            break;
       default: result = { status: "error", message: "Unknown action: " + action };
     }
     return json_(result);
@@ -111,7 +114,7 @@ function doGet(e) {
       if (!key || p.key !== key) return json_({ status: "error", message: "unauthorized" });
       return json_(getDashboardData());
     }
-    return json_({ status: "ok", version: 16, hq: props_().getProperty("HQ_ID") ? "ready" : "not set up" });
+    return json_({ status: "ok", version: 17, hq: props_().getProperty("HQ_ID") ? "ready" : "not set up" });
   } catch (err) {
     return json_({ status: "error", message: err.toString() });
   }
@@ -625,6 +628,200 @@ function archiveOldSheets() {
     }
   }
   return { status: "ok", message: "Archived: " + (renamed.join(", ") || "nothing (already archived)") };
+}
+
+// ---------------------------------------------- THEME / SORT / DROPDOWNS (v30)
+// One-time (idempotent) polish so the consolidated tabs share one brand look,
+// read chronologically, and have clean dropdown lists.
+
+var BRAND = {
+  orange:   "#E8622A",  // primary title + column-header banners
+  white:    "#FFFFFF",
+  darkcap:  "#141517",  // caption/sub-title rows
+  capText:  "#B7B7B7",
+  charcoal: "#2B2D31",  // section sub-bands
+  band:     "#FCEDE6"   // very light orange tint for alternating data rows
+};
+
+function styleRow_(sheet, row, lastCol, bg, fg, bold, italic) {
+  if (row < 1) return;
+  var rng = sheet.getRange(row, 1, 1, lastCol);
+  rng.setBackground(bg).setFontColor(fg);
+  rng.setFontWeight(bold ? "bold" : "normal");
+  rng.setFontStyle(italic ? "italic" : "normal");
+}
+
+// Find first row (1-indexed) containing text in any column of the used range.
+function findRowByAnyCol_(sheet, text, lastCol) {
+  var lastRow = Math.min(sheet.getLastRow(), 400);
+  if (lastRow < 1) return -1;
+  var vals = sheet.getRange(1, 1, lastRow, lastCol).getValues();
+  var t = text.toLowerCase();
+  for (var i = 0; i < vals.length; i++) {
+    for (var c = 0; c < vals[i].length; c++) {
+      if (String(vals[i][c]).toLowerCase().trim().indexOf(t) !== -1) return i + 1;
+    }
+  }
+  return -1;
+}
+
+function themeSpecs_() {
+  return [
+    { key: "income",    title: 1, caption: 2, headers: [3], sections: ["2026 total income", "income breakdown by type"], dataStart: 4, cols: 7,  endMarker: "income" },
+    { key: "expenses",  title: 1, caption: 2, headers: [4], sections: ["2026 total expenses", "expense breakdown by category"], dataStart: 5, cols: 7, endMarker: "expenses" },
+    { key: "mileage",   title: 1, caption: 2, headers: [3], sections: ["year totals"], dataStart: 4, cols: 8, endMarker: "mileage" },
+    { key: "leads",     title: 1, caption: 0, headers: [2], sections: [], dataStart: 3, cols: 9,  endMarker: null },
+    { key: "clients",   title: 1, caption: 0, headers: [2], sections: [], dataStart: 3, cols: 22, endMarker: null },
+    { key: "dashboard", title: 1, caption: 2, headers: [5, 9, 20], sections: ["key metrics", "lead pipeline", "client stages", "revenue summary", "clients needing attention", "lead follow-ups due"], dataStart: 0, cols: 12, endMarker: null, wipe: true }
+    // Summary tab is intentionally left as-is: it is already orange and its
+    // green "Total Income" / red "Total Expenses" money callouts are semantic.
+  ];
+}
+
+function themeTabs() {
+  var specs = themeSpecs_();
+  var done = [];
+  for (var i = 0; i < specs.length; i++) {
+    var sp = specs[i];
+    var sheet = tab_(sp.key);
+    var lastCol = sp.cols;
+
+    // remove existing bandings (kills the green/other striping)
+    var bandings = sheet.getBandings();
+    for (var b = 0; b < bandings.length; b++) bandings[b].remove();
+
+    // For dashboard: wipe the whole used area to white first, then recolour.
+    if (sp.wipe) {
+      var lr = Math.max(sheet.getLastRow(), 1);
+      sheet.getRange(1, 1, lr, lastCol).setBackground(BRAND.white);
+    }
+
+    styleRow_(sheet, sp.title, lastCol, BRAND.orange, BRAND.white, true, false);
+    if (sp.caption) styleRow_(sheet, sp.caption, lastCol, BRAND.darkcap, BRAND.capText, false, true);
+    for (var h = 0; h < sp.headers.length; h++) styleRow_(sheet, sp.headers[h], lastCol, BRAND.orange, BRAND.white, true, false);
+    for (var s = 0; s < sp.sections.length; s++) {
+      var r = findRowByAnyCol_(sheet, sp.sections[s], lastCol);
+      if (r > 0) styleRow_(sheet, r, lastCol, BRAND.charcoal, BRAND.white, true, false);
+    }
+
+    // Data-region banding for the ledger-style tabs.
+    if (sp.dataStart) {
+      var endRow;
+      if (sp.endMarker) endRow = dataEndRow_(sheet, sp.endMarker) - 1;      // stop before the totals row
+      else endRow = sheet.getMaxRows();                                     // leads/clients: to the very bottom (clears trailing green)
+      if (endRow >= sp.dataStart) {
+        var n = endRow - sp.dataStart + 1;
+        sheet.getRange(sp.dataStart, 1, n, lastCol).setBackground(BRAND.white);
+        var lastData = sheet.getLastRow();
+        var bandEnd = Math.min(endRow, lastData);
+        if (bandEnd >= sp.dataStart) {
+          var bn = bandEnd - sp.dataStart + 1;
+          var bgs = [];
+          for (var rr = 0; rr < bn; rr++) {
+            var color = (rr % 2 === 1) ? BRAND.band : BRAND.white;
+            var rowArr = [];
+            for (var cc = 0; cc < lastCol; cc++) rowArr.push(color);
+            bgs.push(rowArr);
+          }
+          sheet.getRange(sp.dataStart, 1, bn, lastCol).setBackgrounds(bgs);
+        }
+      }
+    }
+    done.push(sheet.getName());
+  }
+  return { status: "ok", message: "Themed: " + done.join(", ") };
+}
+
+// Sort each ledger tab's data region ascending by its date column, then
+// re-apply the formulas that must stay intact.
+function sortTabsChrono() {
+  var out = [];
+  out.push(sortRegion_("income", 4, 1, "income"));
+  out.push(sortRegion_("expenses", 5, 1, "expenses"));
+  out.push(sortRegion_("mileage", 4, 1, "mileage"));
+  out.push(sortRegion_("leads", 3, 1, null));       // Date Added = col A
+  out.push(sortRegion_("clients", 3, 6, null));     // Client Since = col F
+  fixIncomeFormulasOn_(tab_("income"));
+  reapplyClientFormulas_();
+  return { status: "ok", message: out.join(" | ") };
+}
+
+function sortRegion_(key, dataStart, sortCol, endMarker) {
+  var sheet = tab_(key);
+  var end = endMarker ? dataEndRow_(sheet, endMarker) - 1 : sheet.getLastRow();
+  var n = end - dataStart + 1;
+  if (n <= 1) return key + ": nothing to sort";
+  sheet.getRange(dataStart, 1, n, sheet.getLastColumn())
+    .sort({ column: sortCol, ascending: true });
+  return key + ": sorted rows " + dataStart + "-" + end + " by col " + sortCol;
+}
+
+function reapplyClientFormulas_() {
+  var sheet = tab_("clients");
+  var last = sheet.getLastRow();
+  for (var r = 3; r <= last; r++) {
+    if (String(sheet.getRange(r, 1).getValue()).trim() !== "") setClientFormulas_(sheet, r);
+  }
+}
+
+// Rebuild every dropdown so nothing reads "invalid": merge duplicate variants,
+// then set the allowed list = canonical vocabulary ∪ every value actually present.
+function dropdownConfig_() {
+  var PAY = ["Stripe", "Venmo", "Zelle", "Cash", "Card", "Personal Checking", "N/A", "Unknown"];
+  var SOURCE = ["Pictona", "Instagram", "Earl Brown", "Referral", "Direct DM", "NSB (Pettis/Glencoe)", "Cresswind", "Other"];
+  var srcMerge = { "Pettis Park": "NSB (Pettis/Glencoe)" };
+  return [
+    // Income
+    { tab: "income", col: 3, dataStart: 4, endMarker: "income", canonical: ["Mobile Chiro Visit", "Pickleball Lessons", "Digital Products (Guides)", "Package Sales", "Tournament / Other"], merges: {} },
+    { tab: "income", col: 5, dataStart: 4, endMarker: "income", canonical: PAY, merges: {} },
+    // Expenses
+    { tab: "expenses", col: 3, dataStart: 5, endMarker: "expenses", canonical: ["Equipment", "Supplies & Balls", "Software & Subscriptions", "Marketing", "Education & Courses", "Mileage & Travel", "Professional Services", "Phone (Business %)", "Other"], merges: {} },
+    { tab: "expenses", col: 5, dataStart: 5, endMarker: "expenses", canonical: PAY, merges: {} },
+    { tab: "expenses", col: 7, dataStart: 5, endMarker: "expenses", canonical: ["Yes", "No"], merges: {} },
+    // Mileage
+    { tab: "mileage", col: 3, dataStart: 4, endMarker: "mileage", canonical: ["Mobile Chiro", "Pickleball Lesson", "Other"], merges: { "Mobile Chiropractic": "Mobile Chiro", "Pickleball Lessons": "Pickleball Lesson" } },
+    // Leads
+    { tab: "leads", col: 5, dataStart: 3, endMarker: null, canonical: SOURCE, merges: srcMerge },
+    { tab: "leads", col: 6, dataStart: 3, endMarker: null, canonical: ["Mobile Chiro", "In-Clinic Chiro", "Pickleball Lessons", "Mobile Chiro / In-Clinic Chiro", "Mobile Chiro / Pickleball Lessons", "Digital Product"], merges: { "Clinic Chiropractic": "In-Clinic Chiro", "Mobile Chiropractic": "Mobile Chiro", "Pickleball Lesson": "Pickleball Lessons" } },
+    { tab: "leads", col: 7, dataStart: 3, endMarker: null, canonical: ["New", "Contacted", "Nurturing", "Booked", "Converted", "Lost", "Not a Fit"], merges: {} },
+    // Clients
+    { tab: "clients", col: 5, dataStart: 3, endMarker: null, canonical: SOURCE, merges: srcMerge },
+    { tab: "clients", col: 7, dataStart: 3, endMarker: null, canonical: ["Active", "Inactive"], merges: {} },
+    { tab: "clients", col: 11, dataStart: 3, endMarker: null, canonical: ["Mobile Chiro Package", "Lesson Package - Individual", "Lesson Package - Group", "Single Lesson", "Mobile Chiro (ongoing)", "In-Clinic Chiro", "None"], merges: { "Mobile Chiropractic": "Mobile Chiro Package", "Clinic Chiropractic": "In-Clinic Chiro", "Individual Lessons": "Lesson Package - Individual", "Group Lessons": "Lesson Package - Group" } },
+    { tab: "clients", col: 19, dataStart: 3, endMarker: null, canonical: PAY, merges: {} }
+  ];
+}
+
+function fixDropdowns() {
+  var cfg = dropdownConfig_();
+  var report = [];
+  for (var i = 0; i < cfg.length; i++) {
+    var c = cfg[i];
+    var sheet = tab_(c.tab);
+    var end = c.endMarker ? dataEndRow_(sheet, c.endMarker) - 1 : sheet.getLastRow();
+    if (end < c.dataStart) { report.push(c.tab + " col" + c.col + ": empty"); continue; }
+    var n = end - c.dataStart + 1;
+    var rng = sheet.getRange(c.dataStart, c.col, n, 1);
+    var vals = rng.getValues();
+    var present = {};
+    var changed = false;
+    for (var r = 0; r < n; r++) {
+      var v = String(vals[r][0]).trim();
+      if (v === "") continue;
+      if (c.merges && c.merges[v] !== undefined) { v = c.merges[v]; vals[r][0] = v; changed = true; }
+      present[v] = true;
+    }
+    if (changed) rng.setValues(vals);
+    var allowed = c.canonical.slice();
+    for (var p in present) if (allowed.indexOf(p) === -1) allowed.push(p);
+    var rule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(allowed, true)
+      .setAllowInvalid(true)   // future off-list values warn but never block the webhook
+      .build();
+    rng.setDataValidation(rule);
+    report.push(c.tab + " col" + c.col + ": " + allowed.length + " opts");
+  }
+  return { status: "ok", message: report.join(" | ") };
 }
 
 // ------------------------------------------------------------------ READ API
