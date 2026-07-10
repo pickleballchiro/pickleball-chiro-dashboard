@@ -59,17 +59,21 @@ Pickleball_Chiro_PCMA_Addendum.docx
 
 # ─── Heavy/optional folders (not needed for dashboard) ──────────────────────
 Clinical Templates/
-Knee Pain Course/
+04 Products & Offers/Knee Pain Course/
+04 Products & Offers/Guides/
 Make $ With Social Media/
-Insight Chiropractic/*
-!Insight Chiropractic/workshops/
-Guides/
-Images/
+02 Content/Images/
+02 Content/images for bio link page/
 
-# ─── Embedded git repo (deployed separately via Netlify) ────────────────────
-IG Bio Link/pickleballchiro-site
+# ─── Embedded git repos (deployed separately) ───────────────────────────────
+03 Website/pickleballchiro-site/
+03 Website/pickleball-quiz/
 
-# ─── Thumbnails + heavy media ───────────────────────────────────────────────
-my-first-video/.thumbnails/
-my-first-video/assets/
-Business Documents/
+# ─── Heavy media ─────────────────────────────────────────────────────────────
+03 Website/Google review images/
+
+# ─── Local business files (data lives in Google Sheets now) ─────────────────
+01 Business/
+
+# ─── Archived stale/duplicate files (reorg 2026-07-10) — not source ─────────
+_Archive 2026-07/
