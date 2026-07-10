@@ -1,16 +1,17 @@
 ---
 name: lane-sheets-updater
 description: >
-  Automatically update Lane's Pickleball Chiro business spreadsheet from natural language.
-  Use this skill whenever Lane mentions driving to a client, a business expense or purchase,
-  income or payment received, a new lead or contact, a client session, package usage, or
-  anything that sounds like it should be tracked in his business. Trigger on casual phrases
-  like "I drove 20 miles to see Laura", "I bought a massage gun for $89", "Doug paid me
-  $195 today", "new lead — John found me on Instagram", or "I saw Ashley this afternoon."
-  ALL business data lives in ONE spreadsheet: "PickleballChiro HQ 2026" (tabs: Income,
-  Expenses, Mileage Log, Leads, Clients, Dashboard, Summary). Always trigger before making
-  any spreadsheet updates — do not attempt to update Google Sheets without consulting this
-  skill first.
+  Automatically update Lane's Pickleball Chiro business spreadsheet from natural language —
+  log mileage, income, expenses, leads, client sessions (package vs one-off vs group), and
+  payments. Use this skill whenever Lane mentions driving to a client, a business expense or
+  purchase, income or a payment received, a new lead or contact, or a coaching/chiro session.
+  Trigger on casual phrases like "I drove 20 miles to see Laura", "I bought a massage gun for
+  $89", "Doug paid me $195 today", "new lead — John found me on Instagram", or "I saw Ashley
+  for a chiro session and a lesson." ALL business data lives in ONE spreadsheet, "PickleballChiro
+  HQ 2026" (tabs: Income, Expenses, Mileage Log, Leads, Clients, Sessions, Dashboard, Summary);
+  log every session with log_session (Chiro/Lesson × Package/One-off/Exam) and every payment
+  with record_payment. Always trigger before making any spreadsheet updates — do not attempt to
+  update Google Sheets without consulting this skill first.
 ---
 
 # Lane's Sheets Updater (v2 — consolidated HQ sheet)
