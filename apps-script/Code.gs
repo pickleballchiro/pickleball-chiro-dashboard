@@ -18,6 +18,7 @@ var TABS = {
   mileage:  "mileage",
   leads:    "leads",
   clients:  "clients",
+  sessions: "sessions",
   dashboard: "dashboard"
 };
 
@@ -98,6 +99,9 @@ function doPost(e) {
       case "theme_tabs":             result = themeTabs();               break;
       case "sort_tabs":              result = sortTabsChrono();          break;
       case "fix_dropdowns":          result = fixDropdowns();            break;
+      case "log_session":            result = logSession(data);          break;
+      case "record_payment":         result = recordPayment(data);       break;
+      case "backfill_sessions":      result = backfillSessions(data);    break;
       default: result = { status: "error", message: "Unknown action: " + action };
     }
     return json_(result);
@@ -114,7 +118,7 @@ function doGet(e) {
       if (!key || p.key !== key) return json_({ status: "error", message: "unauthorized" });
       return json_(getDashboardData());
     }
-    return json_({ status: "ok", version: 17, hq: props_().getProperty("HQ_ID") ? "ready" : "not set up" });
+    return json_({ status: "ok", version: 18, hq: props_().getProperty("HQ_ID") ? "ready" : "not set up" });
   } catch (err) {
     return json_({ status: "error", message: err.toString() });
   }
@@ -824,6 +828,148 @@ function fixDropdowns() {
   return { status: "ok", message: report.join(" | ") };
 }
 
+// ------------------------------------------ SESSIONS LEDGER + PAYMENTS (v31)
+// The 🗓 Sessions tab is the per-session source of truth. Every session is one
+// row tagged Discipline (Chiro/Lesson) × Billing (Package/One-off/Exam), and the
+// webhook keeps the Clients tab counts in sync so nothing has to be hand-typed.
+
+function gasDate_(s) {
+  if (s instanceof Date) return s;
+  s = String(s).trim();
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s);
+  if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+  m = /^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s);
+  if (m) { var y = +m[3]; if (y < 100) y += 2000; return new Date(y, +m[1] - 1, +m[2]); }
+  return null;
+}
+
+// Find a client's 1-indexed row by name (case-insensitive). -1 if not found.
+function findClientRow_(sheet, name) {
+  var vals = sheet.getRange(1, 1, sheet.getLastRow(), 1).getValues();
+  var t = String(name).toLowerCase().trim();
+  for (var i = 2; i < vals.length; i++) {
+    if (String(vals[i][0]).toLowerCase().trim() === t) return i + 1;
+  }
+  return -1;
+}
+
+// Create + theme the Sessions tab if it doesn't exist yet.
+function ensureSessionsTab_() {
+  var ss = hq_();
+  var sheet = findSheet(ss, "sessions");
+  if (sheet) return sheet;
+  sheet = ss.insertSheet("🗓 Sessions");
+  sheet.getRange(1, 1, 1, 5).merge().setValue("PICKLEBALL CHIRO  ·  SESSIONS LOG")
+    .setBackground(BRAND.orange).setFontColor(BRAND.white).setFontWeight("bold").setHorizontalAlignment("center");
+  sheet.getRange(2, 1, 1, 5).merge()
+    .setValue("One row per session — Chiro/Lesson × Package/One-off/Exam. The webhook keeps this in sync with the Clients tab.")
+    .setBackground(BRAND.darkcap).setFontColor(BRAND.capText).setFontStyle("italic").setHorizontalAlignment("center");
+  sheet.getRange(3, 1, 1, 5).setValues([["Date", "Client", "Discipline", "Billing", "Notes"]])
+    .setBackground(BRAND.orange).setFontColor(BRAND.white).setFontWeight("bold");
+  sheet.setFrozenRows(3);
+  sheet.setColumnWidth(1, 95); sheet.setColumnWidth(2, 185); sheet.setColumnWidth(3, 110);
+  sheet.setColumnWidth(4, 110); sheet.setColumnWidth(5, 380);
+  var discRule = SpreadsheetApp.newDataValidation().requireValueInList(["Chiro", "Lesson"], true).setAllowInvalid(true).build();
+  var billRule = SpreadsheetApp.newDataValidation().requireValueInList(["Package", "One-off", "Exam"], true).setAllowInvalid(true).build();
+  sheet.getRange(4, 3, 997, 1).setDataValidation(discRule);
+  sheet.getRange(4, 4, 997, 1).setDataValidation(billRule);
+  return sheet;
+}
+
+// Sync one client's Clients-tab counters for a single session.
+function applySessionToClient_(name, date, discipline, billing) {
+  var clients = tab_("clients");
+  var r = findClientRow_(clients, name);
+  if (r < 0) return false;
+  var tot = Number(clients.getRange(r, 10).getValue()) || 0;   // J Total Sessions
+  clients.getRange(r, 10).setValue(tot + 1);
+  if (billing === "Package") {                                  // M Used (+1); N Left is =L-M
+    var used = Number(clients.getRange(r, 13).getValue()) || 0;
+    var incl = Number(clients.getRange(r, 12).getValue()) || 0;
+    clients.getRange(r, 13).setValue(used + 1);
+    clients.getRange(r, 15).setValue(incl && used + 1 >= incl ? "Complete" : "Active"); // O Pkg Status
+  }
+  var d = gasDate_(date);
+  var cur = gasDate_(clients.getRange(r, 8).getValue());        // H Last Session
+  if (d && (!cur || d.getTime() >= cur.getTime())) clients.getRange(r, 8).setValue(d).setNumberFormat("mm/dd/yyyy");
+  return true;
+}
+
+// Log one session: append a ledger row + keep the client's counters in sync.
+// { name, date?, discipline: "Chiro"|"Lesson", billing: "Package"|"One-off"|"Exam", notes? }
+function logSession(data) {
+  var sheet = ensureSessionsTab_();
+  var date = data.date || today();
+  var discipline = data.discipline || "Lesson";
+  var billing = data.billing || "One-off";
+  var row = firstEmptyRow(sheet, 4);
+  sheet.getRange(row, 1, 1, 5).setValues([[gasDate_(date), data.name, discipline, billing, data.notes || ""]]);
+  sheet.getRange(row, 1).setNumberFormat("mm/dd/yyyy");
+  var synced = applySessionToClient_(data.name, date, discipline, billing);
+  return {
+    status: "ok",
+    message: "Session logged -- " + data.name + " " + discipline + "/" + billing + " on " + date +
+      (synced ? "" : " (no matching client row to sync)")
+  };
+}
+
+// Record a payment atomically: log income + bump Total Paid + optionally reduce Outstanding.
+// { name, amount, method?, income_type?, notes?, date?, reduce_outstanding? }
+function recordPayment(data) {
+  var amount = Number(data.amount);
+  if (!amount) throw new Error("record_payment needs a numeric amount");
+  logIncome({
+    client_source: data.name, income_type: data.income_type || "Pickleball Lessons",
+    notes: data.notes || "", payment_method: data.method || "", amount: amount, date: data.date
+  });
+  var clients = tab_("clients");
+  var r = findClientRow_(clients, data.name);
+  if (r < 0) return { status: "ok", message: "Income logged for " + data.name + " ($" + amount + "), but no matching client row to update." };
+  var paid = Number(clients.getRange(r, 17).getValue()) || 0;   // Q Total Paid
+  clients.getRange(r, 17).setValue(paid + amount);
+  if (data.method) clients.getRange(r, 19).setValue(data.method); // S Method
+  clients.getRange(r, 20).setValue(data.date || today());         // T Last Paid
+  var msg = "Payment recorded -- $" + amount + " from " + data.name;
+  if (data.reduce_outstanding) {
+    var out = Number(clients.getRange(r, 18).getValue()) || 0;    // R Outstanding
+    var newOut = Math.max(0, out - amount);
+    clients.getRange(r, 18).setValue(newOut);
+    msg += " (outstanding " + out + " -> " + newOut + ")";
+  }
+  return { status: "ok", message: msg };
+}
+
+// One-time (re-runnable) seed of the Sessions ledger + corrected package counts.
+// { sessions: [[date, client, discipline, billing, notes], ...],
+//   client_counts: [{ name, package?, incl?, used?, pkg_status?, total_sessions? }, ...] }
+function backfillSessions(data) {
+  var sheet = ensureSessionsTab_();
+  var last = sheet.getLastRow();
+  if (last >= 4) sheet.getRange(4, 1, last - 3, 5).clearContent();   // re-runnable
+  var rows = data.sessions || [];
+  if (rows.length) {
+    var out = rows.map(function (x) { return [gasDate_(x[0]), x[1], x[2], x[3], x[4] || ""]; });
+    sheet.getRange(4, 1, out.length, 5).setValues(out);
+    sheet.getRange(4, 1, out.length, 1).setNumberFormat("mm/dd/yyyy");
+  }
+  var counts = data.client_counts || [];
+  var clients = tab_("clients");
+  var applied = [];
+  for (var k = 0; k < counts.length; k++) {
+    var c = counts[k];
+    var r = findClientRow_(clients, c.name);
+    if (r < 0) continue;
+    if (c.package !== undefined)        clients.getRange(r, 11).setValue(c.package);
+    if (c.incl !== undefined)           clients.getRange(r, 12).setValue(c.incl);
+    if (c.used !== undefined)           clients.getRange(r, 13).setValue(c.used);
+    if (c.pkg_status !== undefined)     clients.getRange(r, 15).setValue(c.pkg_status);
+    if (c.total_sessions !== undefined) clients.getRange(r, 10).setValue(c.total_sessions);
+    setClientFormulas_(clients, r);   // keep Left (N) + Stage (U) as formulas
+    applied.push(c.name);
+  }
+  return { status: "ok", message: "Backfilled " + rows.length + " sessions; counts set for: " + applied.join(", ") };
+}
+
 // ------------------------------------------------------------------ READ API
 
 function getDashboardData() {
@@ -901,6 +1047,20 @@ function getDashboardData() {
       method: String(cr[18]), last_paid: fmtDate_(cr[19]),
       stage: String(cr[20]), notes: String(cr[21])
     });
+  }
+
+  var sessions = findSheet(hq_(), "sessions");
+  out.sessions = [];
+  if (sessions) {
+    var sVals = sessions.getDataRange().getValues();
+    for (var si = 3; si < sVals.length; si++) {
+      var sr = sVals[si];
+      if (String(sr[1]).trim() === "") continue;
+      out.sessions.push({
+        date: fmtDate_(sr[0]), client: String(sr[1]),
+        discipline: String(sr[2]), billing: String(sr[3]), notes: String(sr[4] || "")
+      });
+    }
   }
 
   return out;

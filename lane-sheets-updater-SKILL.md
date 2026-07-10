@@ -123,6 +123,40 @@ curl -s -L --data '{ ...payload... }' -H "Content-Type: application/json" "<WEBH
 - `add_client` — `{action, name, phone, email, package, sessions_included, sessions_used, sessions_left, total_paid, notes}`
 - `update_client` — `{action, name, last_session, sessions_total, sessions_used, sessions_left, total_paid, notes}`
 
+### SESSIONS — log every coaching/treatment session (NEW, preferred)
+
+The `🗓 Sessions` tab is the source of truth for sessions. Log EVERY session with
+`log_session`; the webhook appends the ledger row AND keeps the client's Clients-tab counts
+in sync automatically (package Used/Left, Total Sessions, Last Session). Never hand-increment
+session counts anymore.
+
+```json
+{ "action": "log_session", "name": "Laura Cadigan", "date": "07/15/2026",
+  "discipline": "Chiro", "billing": "Package", "notes": "Package session 5 of 8" }
+```
+- `discipline`: **Chiro** or **Lesson**
+- `billing`: **Package** (counts against their package) · **One-off** (à-la-carte) · **Exam** (initial chiro exam, not part of a package)
+- A client can hold ONE active package + unlimited one-offs. Example: Laura is on a Mobile
+  Chiro package (Package) but her lessons are One-off. Vittoria + husband Jim share her lesson
+  package; her solo/friend lessons are One-off.
+- **Ask Lane to specify** package vs one-off vs group-with-someone-else if he doesn't say. If
+  it's clearly a package client doing their package service, default to Package; otherwise One-off.
+- If a payment happened too, ALSO log it (use `record_payment` below).
+
+### PAYMENTS — use `record_payment` (NEW, atomic)
+
+For any payment — including paying down an outstanding balance — use `record_payment`. It logs
+the income row, bumps the client's Total Paid, and (optionally) lowers Outstanding, all at once,
+so they can never drift apart (this is what caused the old Vittoria $70 issue).
+
+```json
+{ "action": "record_payment", "name": "Vittoria Starley", "amount": 70,
+  "method": "Zelle", "income_type": "Pickleball Lessons",
+  "notes": "Owed balance for 7/6 group lesson", "reduce_outstanding": true }
+```
+Set `reduce_outstanding: true` only when the payment is settling a balance they owed. For a
+normal new payment, omit it (Total Paid still updates; Outstanding untouched).
+
 ### SAFE EDIT FLOW — fixing/correcting an existing row (NEW)
 
 Never guess row numbers. Always: **find → confirm → update**.
