@@ -10,8 +10,10 @@ description: >
   for a chiro session and a lesson." ALL business data lives in ONE spreadsheet, "PickleballChiro
   HQ 2026" (tabs: Income, Expenses, Mileage Log, Leads, Clients, Sessions, Dashboard, Summary);
   log every session with log_session (Chiro/Lesson × Package/One-off/Exam) and every payment
-  with record_payment. Always trigger before making any spreadsheet updates — do not attempt to
-  update Google Sheets without consulting this skill first.
+  with record_payment. Also trigger when Lane mentions a client's NEXT appointment ("she's
+  booked for next Wednesday at 8:15") — schedule_session puts it on his real Google Calendar,
+  synced with the dashboard. Always trigger before making any spreadsheet updates — do not
+  attempt to update Google Sheets without consulting this skill first.
 ---
 
 # Lane's Sheets Updater (v2 — consolidated HQ sheet)
@@ -157,6 +159,31 @@ so they can never drift apart (this is what caused the old Vittoria $70 issue).
 ```
 Set `reduce_outstanding: true` only when the payment is settling a balance they owed. For a
 normal new payment, omit it (Total Paid still updates; Outstanding untouched).
+
+### SCHEDULING — Google Calendar sync (NEW)
+
+When Lane mentions a client's **next** appointment — "she's booked for next Wednesday at
+8:15", "see him again Friday at 3" — call `schedule_session`. This puts the event straight
+on Lane's real Google Calendar (the webhook runs as him, so there's no separate calendar to
+manage) and the dashboard's Schedule card reads the same calendar, so it shows up there too.
+
+```json
+{ "action": "schedule_session", "name": "Laura Cadigan", "date": "07/15/2026",
+  "time": "8:15am", "discipline": "Lesson", "notes": "Package session 6 of 8" }
+```
+- `discipline`: **Chiro** or **Lesson** — sets default duration (30 min Chiro, 60 min Lesson).
+  Override with `duration_minutes` if Lane says otherwise.
+- `time` must look like `8:15am` / `3:00pm` (12-hour, with am/pm).
+- This is independent of `log_session`/`record_payment` — scheduling the *next* visit and
+  logging the one that *just happened* are separate calls. One message can trigger both:
+  "saw Laura today, she paid $85, and she's booked for Wednesday 8:15" = `log_session` +
+  `record_payment` (today) + `schedule_session` (Wednesday).
+- To move or cancel an already-scheduled session: `reschedule_session` /
+  `cancel_session` — `{ "action": "reschedule_session", "name": "Laura Cadigan",
+  "date": "07/17/2026", "time": "9:00am" }`. Both look up the existing calendar event via
+  the client's row, so confirm the client name with Lane if there's any ambiguity (same
+  find-before-act spirit as the Safe Edit Flow below).
+- Confirm back like: `📅 Scheduled — Laura Cadigan, Wed 7/15 at 8:15am (Lesson) — added to Google Calendar`
 
 ### SAFE EDIT FLOW — fixing/correcting an existing row (NEW)
 

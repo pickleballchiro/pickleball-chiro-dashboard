@@ -102,6 +102,9 @@ function doPost(e) {
       case "log_session":            result = logSession(data);          break;
       case "record_payment":         result = recordPayment(data);       break;
       case "backfill_sessions":      result = backfillSessions(data);    break;
+      case "schedule_session":       result = scheduleSession(data);     break;
+      case "reschedule_session":     result = rescheduleSession(data);   break;
+      case "cancel_session":         result = cancelSession(data);       break;
       default: result = { status: "error", message: "Unknown action: " + action };
     }
     return json_(result);
@@ -118,7 +121,15 @@ function doGet(e) {
       if (!key || p.key !== key) return json_({ status: "error", message: "unauthorized" });
       return json_(getDashboardData());
     }
-    return json_({ status: "ok", version: 18, hq: props_().getProperty("HQ_ID") ? "ready" : "not set up" });
+    if (p.action === "get_calendar_events") {
+      var ckey = props_().getProperty("DASHBOARD_KEY");
+      if (!ckey || p.key !== ckey) return json_({ status: "error", message: "unauthorized" });
+      var range = defaultCalendarRange_();
+      var start = p.range_start ? gasDate_(p.range_start) : range.start;
+      var end = p.range_end ? gasDate_(p.range_end) : range.end;
+      return json_({ status: "ok", events: getCalendarEvents_(start, end) });
+    }
+    return json_({ status: "ok", version: 19, hq: props_().getProperty("HQ_ID") ? "ready" : "not set up" });
   } catch (err) {
     return json_({ status: "error", message: err.toString() });
   }
@@ -939,6 +950,117 @@ function recordPayment(data) {
   return { status: "ok", message: msg };
 }
 
+// ------------------------------------------------------- GOOGLE CALENDAR SYNC
+
+// Discipline -> default event length in minutes (overridable via duration_minutes).
+var SESSION_DURATION_MIN = { Chiro: 30, Lesson: 60 };
+
+// Combine a date (any format gasDate_ understands) with a "h:mm am/pm" time string.
+function parseSessionDateTime_(dateStr, timeStr) {
+  var d = gasDate_(dateStr);
+  if (!d) throw new Error("Need a valid date (got: " + dateStr + ")");
+  var m = /^(\d{1,2}):(\d{2})\s*([AaPp][Mm])?$/.exec(String(timeStr || "").trim());
+  if (!m) throw new Error("Need a valid time like '8:15am' (got: " + timeStr + ")");
+  var hh = Number(m[1]), mm = Number(m[2]), ap = (m[3] || "").toLowerCase();
+  if (ap === "pm" && hh < 12) hh += 12;
+  if (ap === "am" && hh === 12) hh = 0;
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hh, mm, 0);
+}
+
+// Lazily adds the "Next Session" / "Next Session Event ID" header columns (W/X)
+// to the Clients tab the first time they're needed -- idempotent.
+function ensureScheduleColumns_() {
+  var sheet = tab_("clients");
+  if (String(sheet.getRange(2, 23).getValue()).trim() === "") {
+    sheet.getRange(2, 23).setValue("Next Session").setBackground(BRAND.orange).setFontColor(BRAND.white).setFontWeight("bold");
+    sheet.getRange(2, 24).setValue("Next Session Event ID").setBackground(BRAND.orange).setFontColor(BRAND.white).setFontWeight("bold");
+  }
+  return sheet;
+}
+
+function defaultCalendarRange_() {
+  var now = new Date();
+  return {
+    start: new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7),
+    end:   new Date(now.getFullYear(), now.getMonth(), now.getDate() + 83)
+  };
+}
+
+function getCalendarEvents_(startDate, endDate) {
+  var events = CalendarApp.getDefaultCalendar().getEvents(startDate, endDate);
+  return events.map(function (ev) {
+    return {
+      id: ev.getId(),
+      title: ev.getTitle(),
+      start: ev.getStartTime().toISOString(),
+      end: ev.getEndTime().toISOString(),
+      all_day: ev.isAllDayEvent(),
+      description: ev.getDescription() || ""
+    };
+  });
+}
+
+// Create a Google Calendar event for a client's next session + remember it on
+// the Clients tab (cols W/X) so reschedule/cancel can find it later.
+// { name, date, time, discipline: "Chiro"|"Lesson", duration_minutes?, notes? }
+function scheduleSession(data) {
+  var discipline = data.discipline || "Lesson";
+  var start = parseSessionDateTime_(data.date, data.time);
+  var minutes = Number(data.duration_minutes) || SESSION_DURATION_MIN[discipline] || 60;
+  var end = new Date(start.getTime() + minutes * 60000);
+  var title = discipline + " – " + data.name;
+  var event = CalendarApp.getDefaultCalendar().createEvent(title, start, end, { description: data.notes || "" });
+
+  var sheet = ensureScheduleColumns_();
+  var row = findClientRow_(sheet, data.name);
+  if (row > 0) {
+    sheet.getRange(row, 23).setValue(start).setNumberFormat("mm/dd/yyyy hh:mm am/pm");
+    sheet.getRange(row, 24).setValue(event.getId());
+  }
+  var when = Utilities.formatDate(start, "America/New_York", "MM/dd/yyyy hh:mm a");
+  return {
+    status: "ok",
+    message: "Scheduled -- " + data.name + " " + discipline + " on " + when +
+      (row > 0 ? "" : " (no matching client row to sync)"),
+    event_id: event.getId(), start: start.toISOString(), end: end.toISOString()
+  };
+}
+
+// Move an already-scheduled session to a new date/time.
+// { name, date, time, duration_minutes? }
+function rescheduleSession(data) {
+  var sheet = tab_("clients");
+  var row = findClientRow_(sheet, data.name);
+  if (row < 0) throw new Error("No matching client row for: " + data.name);
+  var eventId = sheet.getRange(row, 24).getValue();
+  if (!eventId) throw new Error("No scheduled session found for " + data.name + " -- use schedule_session instead");
+  var event = CalendarApp.getEventById(eventId);
+  if (!event) throw new Error("Calendar event not found (it may have been deleted manually)");
+  var start = parseSessionDateTime_(data.date, data.time);
+  var minutes = Number(data.duration_minutes) || Math.round((event.getEndTime() - event.getStartTime()) / 60000);
+  var end = new Date(start.getTime() + minutes * 60000);
+  event.setTime(start, end);
+  sheet.getRange(row, 23).setValue(start).setNumberFormat("mm/dd/yyyy hh:mm am/pm");
+  var when = Utilities.formatDate(start, "America/New_York", "MM/dd/yyyy hh:mm a");
+  return { status: "ok", message: "Rescheduled -- " + data.name + " to " + when };
+}
+
+// Cancel a client's scheduled next session (deletes the calendar event too).
+// { name }
+function cancelSession(data) {
+  var sheet = tab_("clients");
+  var row = findClientRow_(sheet, data.name);
+  if (row < 0) throw new Error("No matching client row for: " + data.name);
+  var eventId = sheet.getRange(row, 24).getValue();
+  if (eventId) {
+    var event = CalendarApp.getEventById(eventId);
+    if (event) event.deleteEvent();
+  }
+  sheet.getRange(row, 23).setValue("");
+  sheet.getRange(row, 24).setValue("");
+  return { status: "ok", message: "Canceled scheduled session for " + data.name };
+}
+
 // One-time (re-runnable) seed of the Sessions ledger + corrected package counts.
 // { sessions: [[date, client, discipline, billing, notes], ...],
 //   client_counts: [{ name, package?, incl?, used?, pkg_status?, total_sessions? }, ...] }
@@ -1061,6 +1183,13 @@ function getDashboardData() {
         discipline: String(sr[2]), billing: String(sr[3]), notes: String(sr[4] || "")
       });
     }
+  }
+
+  var calRange = defaultCalendarRange_();
+  try {
+    out.calendar_events = getCalendarEvents_(calRange.start, calRange.end);
+  } catch (calErr) {
+    out.calendar_events = []; // Calendar scope not authorized yet -- don't break the rest of the dashboard
   }
 
   return out;
