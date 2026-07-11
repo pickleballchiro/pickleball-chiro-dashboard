@@ -952,8 +952,9 @@ function recordPayment(data) {
 
 // ------------------------------------------------------- GOOGLE CALENDAR SYNC
 
-// Discipline -> default event length in minutes (overridable via duration_minutes).
-var SESSION_DURATION_MIN = { Chiro: 30, Lesson: 60 };
+// Default event length in minutes. Every session/lesson is assumed to be an hour
+// unless a duration_minutes is passed in. (Kept per-discipline so it's easy to tweak later.)
+var SESSION_DURATION_MIN = { Chiro: 60, Lesson: 60 };
 
 // Combine a date (any format gasDate_ understands) with a "h:mm am/pm" time string.
 function parseSessionDateTime_(dateStr, timeStr) {

@@ -171,8 +171,9 @@ manage) and the dashboard's Schedule card reads the same calendar, so it shows u
 { "action": "schedule_session", "name": "Laura Cadigan", "date": "07/15/2026",
   "time": "8:15am", "discipline": "Lesson", "notes": "Package session 6 of 8" }
 ```
-- `discipline`: **Chiro** or **Lesson** — sets default duration (30 min Chiro, 60 min Lesson).
-  Override with `duration_minutes` if Lane says otherwise.
+- `discipline`: **Chiro** or **Lesson**.
+- **Every session/lesson is assumed to be 1 hour (60 min) unless Lane states otherwise.**
+  Only pass `duration_minutes` when he gives a different length (e.g. "30-minute adjustment").
 - `time` must look like `8:15am` / `3:00pm` (12-hour, with am/pm).
 - This is independent of `log_session`/`record_payment` — scheduling the *next* visit and
   logging the one that *just happened* are separate calls. One message can trigger both:
