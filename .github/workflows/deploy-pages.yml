@@ -1,12 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'Insight Chiropractic/**'
-      - 'PickleballChiro Quiz/**'
-      - '.github/workflows/deploy-pages.yml'
+  # Auto-deploy disabled 2026-07-12. This repo no longer contains the pages this
+  # workflow deployed: the quiz was replaced by a redirect and archived, the Insight
+  # workshop moved to insightchiro.github.io, and the main site lives in the separate
+  # pickleballchiro-site repo (pickleballchiro.co). Left as manual-only so it stops
+  # failing on every push; re-enable the push trigger if those folders ever return.
   workflow_dispatch:
 
 permissions:
